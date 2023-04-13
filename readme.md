@@ -11,10 +11,10 @@
     - The Routes component is the first child  in the Browser router and in it we have a series of new components called Route (a part of url that specifies where you are e.g /about). Routes can be nested e.g /blog/blog-article-1.
 
  ```jsx
-      <Router> 
+      <BrowserRouter> 
         <Routes>
           {/* create route definition */}
         </Routes>
-      </Router>
+      </BrowserRouter>
  ```
     
