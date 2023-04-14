@@ -1,9 +1,8 @@
-import React from "react"
 // import bgImg from "../assets/images/about-hero.png"
 import { Link } from "react-router-dom"
 
-export default function About() {
-    return (
+const About = () => {
+  return (
         <div className="about-page-container">
             <img src={bgImg} className="about-hero-image" />
             <div className="about-page-content">
@@ -16,5 +15,8 @@ export default function About() {
                 <Link className="link-button" to="/vans">Explore our vans</Link>
             </div>
         </div>
-    );
+  )
 }
+
+export default About
+
