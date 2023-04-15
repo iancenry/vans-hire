@@ -50,7 +50,7 @@
  ```
 
  ### Using Link
- - It helps us not have to put the the url path manually which will cause a full page reload therefore leading to any stored state state being lost. An anchor tag will lead to the same problem.
+ - It helps us not have to put the the url path manually in the address bar which will cause a full page reload therefore leading to any stored state state being lost. It is an alternative to the anchor tag which if used in react will lead to the same problem of a full page reload. On inspection the Link component will be shown as an anchor tag but the way it works is that it catches the page before reload to cause an update without reloading therefore preserving any saved state.
 
  ```jsx
     import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
