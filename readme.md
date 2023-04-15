@@ -1,5 +1,5 @@
 # React Router V6
-- Helps in doing client side routing. 
+- It helps in doing client side routing. 
 
 ## MPA vs SPA
   - `MPA (Multi Page Application)` - in traditional websites, a client requests for a html page of a site from the server, the server will then send an html file as a response and the browser loads the page. When another link e.g the *about link* is clicked the same process will be repeated then the browser will replace the old homepage with the new about page. So when we click on a new page the old is entirely discarded then replaced with the new page from the server.
