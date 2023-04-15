@@ -11,6 +11,8 @@
     - Routes - it is the first child  in the Browser router and in it we have a series of new components called Route( a part of url that specifies where you are e.g /about). Routes can be nested e.g /blog/blog-article-1.
     - Route - self closing component that specifies the element to be displayed when a particular link is hit.
 
+### Basic Setup
+
  ```jsx
       <BrowserRouter> 
         <Routes>
@@ -19,7 +21,7 @@
       </BrowserRouter>
  ```
 
- - Creating a route(s)
+ ### Creating a route(s)
  ```jsx
     import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
@@ -47,7 +49,8 @@
 
  ```
 
- - Using Link- helps us not have to put the the url path manually which will cause a full page reload therefore leading to any stored state state being lost. An anchor tag will lead to the same problem.
+ ### Using Link
+ - It helps us not have to put the the url path manually which will cause a full page reload therefore leading to any stored state state being lost. An anchor tag will lead to the same problem.
 
  ```jsx
     import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
