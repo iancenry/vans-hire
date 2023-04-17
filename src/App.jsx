@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import { Home, About, Vans } from './pages'
+import { Home, About, Vans, VanDetail } from './pages'
 import './server'
 
 
@@ -18,7 +18,11 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/vans' element={<Vans />} />
+          <Route path='/vans/:id' element={<VanDetail />} />
         </Routes>
+        <footer>
+          <span>&copy; #VANLIFE</span>
+        </footer>
       </Router>
     
   )
