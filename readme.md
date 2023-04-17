@@ -70,4 +70,16 @@
       </>
     )
  ```
-    
+
+ ## Continous Deployment with netlify
+ - the idea behind CD is that as you make changes to your code, you will push those changes to github and when you push to github is should automatically deploy on netlfiy(a webhost).about-hero-image 
+ - Steps: 
+  1. Push project to Github
+  2. Tell Netlify which repo you want to deploy
+  3. In site setting; needed since we deploy without building first: 
+    - Build command input  - `npm run build`
+    - Publish directory input  - `dist`
+
+
+- Mirage JS - npm package to create mock server that will intercept any API requests and will return data from the mock server instead of having to worry about reaching out to the real world.
+   - thin of the routes() portion as the server code that would run whenever you make a request to `/vans` or tp `/vans/:id`
