@@ -1,9 +1,9 @@
-/* #root {
+#root {
   max-width: 100%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-} */
+}
 
 
 /*** HOME PAGE ***/
@@ -13,9 +13,16 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  min-height: 350px;
+  height: 700px;
+  min-height: 450px;
   color: white;
-  padding: 45px 23px;
+  padding: 150px 23px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  margin: 0 auto;
 }
 
 .home-container h1 {
@@ -34,7 +41,7 @@
   text-decoration: none;
   background-color: #FF8C38;
   border: none;
-  width: 100%;
+  width: 250px;
   margin-top: 27px;
   padding-block: .75rem;
   color: white;
@@ -50,13 +57,21 @@
 
 
 /*** ABOUT PAGE ***/
+.about-page-container{
+  width: 80%;
+  margin: 0 auto;
+  justify-content: center;
+  /* background: red; */
+}
+
 .about-hero-image {
-  max-width: 100%;
+  width: 70%;
 }
 
 .about-page-content {
   padding-inline: 23px;
   color: #161616;
+  margin-top: 50px;
   margin-bottom: 55px;
 }
 
