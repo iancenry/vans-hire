@@ -1,7 +1,7 @@
 #root {
   max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
 }
 
@@ -104,17 +104,23 @@
 
 /*** VANS PAGE ***/
 .vans{
-  display: flex;
-  flex-wrap: wrap;
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
   text-align: left;
-  width: 75%;
+  width: 80%;
   margin: 90px auto 0;
-  gap: 110px;
+  gap: 25px;
+}
+
+.vans a {
+  color: #161616;
+  text-decoration: none;    
 }
 
 .van-card{
   height: 350px;
   width: 350px;
+  margin-bottom: 100px;
 }
 
 .van-card img{
@@ -126,6 +132,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  color: black;
 }
 
 .van-price{
@@ -145,7 +152,6 @@
   background-color: #E17654;
   text-decoration: none;
   padding: .75rem 1.375rem;
-  color: initial;
   font-weight: 700;
   border-radius: 5px;
   cursor: pointer;
@@ -154,5 +160,57 @@
 
 .van-button:hover {
   transform: translate(1px, 1px);
+}
+
+/*** VAN DETAIL PAGE ***/
+
+.van-detail-container {
+  padding: 27px;
+}
+
+.van-detail-container .back-button {
+  color: black;
+  text-decoration: none;
+}
+
+
+.van-detail-container .back-button span {
+  text-decoration: underline;
+}
+
+.van-detail {
+  display: flex;
+  flex-direction: column;
+  color: #161616;
+}
+
+.van-detail img {
+  border-radius: 5px;
+  margin-block: 47px;
+}
+
+.van-detail h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.van-detail > i {
+  align-self: flex-start;
+}
+
+.van-detail .van-price {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.van-detail .van-price span {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.van-detail .link-button {
+  background-color: #FF8C38;
+  color: white;
+  font-size: 1.125rem;
 }
 
