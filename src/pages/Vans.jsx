@@ -1,10 +1,8 @@
 import beachbum from '../assets/images/beach-bum.png'
 import { Link } from 'react-router-dom'
-const Vans = () => {
-  return (
-    <div>
-        <h1>Explore our van options</h1>
-        <div className="vans">
+
+const Van = () => (
+    <div className="vans">
             <div className="van-card">
                 <img src={beachbum} alt="van image" width='100%'  />
                 <div className="van-details">
@@ -14,6 +12,14 @@ const Vans = () => {
                 <Link className="van-button">Simple</Link>
             </div>
         </div>
+
+)
+
+const Vans = () => {
+  return (
+    <div>
+        <h1>Explore our van options</h1>
+        <Van />
 
     </div>
   )
