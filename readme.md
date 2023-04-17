@@ -83,3 +83,7 @@
 
 - Mirage JS - npm package to create mock server that will intercept any API requests and will return data from the mock server instead of having to worry about reaching out to the real world.
    - thin of the routes() portion as the server code that would run whenever you make a request to `/vans` or tp `/vans/:id`
+
+### Nested Routes
+- use a colon and a name so that we can use one route definition for several pages eg detail page.
+- Use useParams hook to grab url parameters
