@@ -108,17 +108,24 @@
   flex-wrap: wrap;
   text-align: left;
   width: 75%;
-  margin: 80px auto 0;
+  margin: 90px auto 0;
+  gap: 110px;
 }
 
 .van-card{
-  height: 300px;
-  width: 300px;
+  height: 350px;
+  width: 350px;
+}
+
+.van-card img{
+  width: 100%;
+  border-radius: 10px;
 }
 
 .van-details{
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
 }
 
 .van-price{
