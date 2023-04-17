@@ -58,21 +58,20 @@
 
 /*** ABOUT PAGE ***/
 .about-page-container{
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   justify-content: center;
-  /* background: red; */
 }
 
 .about-hero-image {
-  width: 70%;
+  width: 80%;
 }
 
 .about-page-content {
   padding-inline: 23px;
   color: #161616;
-  margin-top: 50px;
-  margin-bottom: 55px;
+  margin: 40px 0;
+
 }
 
 .about-page-content h1 {
