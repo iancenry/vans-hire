@@ -1,8 +1,9 @@
+import { useEffect, useState } from 'react'
 import beachbum from '../assets/images/beach-bum.png'
 import { Link } from 'react-router-dom'
 
 const Van = () => (
-    <div className="vans">
+        <div className="vans">
             <div className="van-card">
                 <img src={beachbum} alt="van image" width='100%'  />
                 <div className="van-details">
@@ -15,7 +16,15 @@ const Van = () => (
 
 )
 
-const Vans = () => {
+const Vans = () => {    
+
+    useEffect(() => {
+        fetch('api/vans')
+            .then(res => res.json())
+            .then(data => setVans(data))
+    }, [])
+
+
   return (
     <div>
         <h1>Explore our van options</h1>
