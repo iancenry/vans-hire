@@ -101,3 +101,51 @@
   color: white;
   border-radius: 10px;
 }
+
+/*** VANS PAGE ***/
+.vans{
+  display: flex;
+  flex-wrap: wrap;
+  text-align: left;
+  width: 75%;
+  margin: 80px auto 0;
+}
+
+.van-card{
+  height: 300px;
+  width: 300px;
+}
+
+.van-details{
+  display: flex;
+  justify-content: space-between;
+}
+
+.van-price{
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.van-price span{
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.van-button {
+  display: inline-block;
+  background-color: #E17654;
+  text-decoration: none;
+  padding: .75rem 1.375rem;
+  color: initial;
+  font-weight: 700;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform .1s ease-in-out;
+}
+
+.van-button:hover {
+  transform: translate(1px, 1px);
+}
+
