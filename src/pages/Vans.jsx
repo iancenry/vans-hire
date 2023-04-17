@@ -6,7 +6,6 @@ const Van = ({name, price, image, type}) => (
         <div className="vans">
             <div className="van-card">
                 <img src={`/src/assets/images/${image}`} alt="van image" width='100%'  />
-                {/* <img src={'/src/assets/images/about-hero.png'} alt="van image" width='100%'  /> */}
                 <div className="van-details">
                     <h2>{name}</h2>
                     <p className='van-price'><span>${price}</span> /day</p>
