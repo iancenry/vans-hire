@@ -81,9 +81,24 @@
     - Publish directory input  - `dist`
 
 
+### Mirage JS
 - Mirage JS - npm package to create mock server that will intercept any API requests and will return data from the mock server instead of having to worry about reaching out to the real world.
-   - thin of the routes() portion as the server code that would run whenever you make a request to `/vans` or tp `/vans/:id`
+   - thin of the routes() portion as the server code that would run whenever you make a request to `/vans` or to `/vans/:id`
 
-### Nested Routes
-- use a colon and a name so that we can use one route definition for several pages eg detail page.
-- Use useParams hook to grab url parameters
+### Dynamic Route(:/name)
+- Route/url parameter - a portion of our route that is a placeholder for what will eventualy be the actual segment in the URL of the page. Help us create dynamic routes. Example of a route parameter called `productId` in a Route path:
+
+```jsx
+  <Route path="/products/:productId" element={<ProductDetail />} />
+```
+- Use useParams hook provided by react-router-dom to grab url parameters.
+
+```jsx
+  const params = useParams()
+  params.urlParamName;
+```
+
+### Nested Routes 
+When talking about nested routes we are talking about:
+  - Nested routes means nesting pieces of the url - /van/van-id-or-name
+  - Prescence of a shared UI or parts of the page that need to remain on th epage when we transition from one route to a child route or nested route.
