@@ -165,7 +165,8 @@
 /*** VAN DETAIL PAGE ***/
 
 .van-detail-container {
-  padding: 27px;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .van-detail-container .back-button {
@@ -185,8 +186,10 @@
 }
 
 .van-detail img {
+  width: 600px;
+  height: 500px;
   border-radius: 5px;
-  margin-block: 47px;
+  align-self: center;
 }
 
 .van-detail h2 {

@@ -19,10 +19,21 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/vans' element={<Vans />} />
           <Route path='/vans/:id' element={<VanDetail />} />
+
+
+          <Route path='/host' element={<Host />} >
+            <Route path='/host/income' element={<HostIncome />} />
+            <Route path='/host/reviews' element={<HostReviews />} />
+            <Route path='/host/vans' element={<HostVans />} />
+            <Route path='/host/vans/:id' element={<HostVan />} />
+            <Route path='/host/vans/:id/pricing' element={<Pricing />} />
+            <Route path='/host/vans/:id/photos' element={<Photos />} />
+          </ Route>
         </Routes>
-        <footer>
+
+        {/* <footer>
           <span>&copy; #VANLIFE</span>
-        </footer>
+        </footer> */}
       </Router>
     
   )
