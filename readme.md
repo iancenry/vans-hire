@@ -106,3 +106,32 @@ When talking about nested routes we are talking about:
 
 - To nest a route we need to change it from a self closing component to it having an opening and closing tag.
 - Use nested routes when you want to keep displaying some UI on the page, but also want to display more. A page changing a small or large portion.
+
+### Layout Routes
+- Don't have a path of their own but their purpose is to *lay out* the page; we want all our pages to have a header and a footer.
+- Outlet will help us create a hole in our component where the matching route that is a child of the parent route can render. Without it we will only see the Layout component, since it has no path so will match all url paths , instead of the appropriate child.
+
+
+
+
+
+
+
+
+```jsx
+
+{/* 
+          <Route path='/host' element={<Host />} >
+            <Route path='/host/income' element={<HostIncome />} />
+            <Route path='/host/reviews' element={<HostReviews />} />
+            <Route path='/host/vans' element={<HostVans />} />
+            <Route path='/host/vans/:id' element={<HostVan />} />
+            <Route path='/host/vans/:id/pricing' element={<Pricing />} />
+            <Route path='/host/vans/:id/photos' element={<Photos />} />
+          </ Route> */}
+
+
+          {/* <footer>
+          <span>&copy; #VANLIFE</span>
+        </footer> */}
+```
