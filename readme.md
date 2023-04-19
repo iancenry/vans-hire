@@ -111,6 +111,38 @@ When talking about nested routes we are talking about:
 - Don't have a path of their own but their purpose is to *lay out* the page; we want all our pages to have a header and a footer.
 - Outlet will help us create a hole in our component where the matching route that is a child of the parent route can render. Without it we will only see the Layout component, since it has no path so will match all url paths , instead of the appropriate child.
 
+### relative paths
+-  A path that doesnt begin with / , slash is dedicated to the homepage so if you start with slash react router will treat it like an absolute path. If you dont use a salsh it tretas it like a relative path, ie relative to its parent route. If the parent has not path like in a pathless route 
+
+```jsx
+//nested routes with absolute paths
+  <Route element={<Layout />}>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<About />} />
+    <Route path="/vans" element={<Vans />} />
+    <Route path="/vans/:id" element={<VanDetail />} />
+          
+    <Route path="/host" element={<HostLayout />}>
+      <Route path="/host" element={<Dashboard />} />
+      <Route path="/host/income" element={<Income />} />
+      <Route path="/host/reviews" element={<Reviews />} />
+    </Route>
+  </Route>
+
+  //nested routes with relative paths
+ <Route element={<Layout />}>
+    <Route path="/" element={<Home />} />
+    <Route path="about" element={<About />} />
+    <Route path="vans" element={<Vans />} />
+    <Route path="vans/:id" element={<VanDetail />} />
+          
+    <Route path="/host" element={<HostLayout />}>
+      <Route path="income" element={<Income />} />
+      <Route path="reviews" element={<Reviews />} />
+    </Route>
+  </Route>
+```
+
 
 
 
