@@ -15,7 +15,7 @@ const Van = ({name, price, image, type, id}) => {
                 <h2>{name}</h2>
                 <p className='van-price'><span>${price}</span> /day</p>
             </div>
-            <Link className="van-button" style={{backgroundColor: buttonColor, color: '#fff'}}>{type}</Link>
+            <i className="van-button" style={{backgroundColor: buttonColor, color: '#fff'}}>{type}</i>
         </div>
     </Link>    
     
