@@ -112,7 +112,7 @@ When talking about nested routes we are talking about:
 - Outlet will help us create a hole in our component where the matching route that is a child of the parent route can render. Without it we will only see the Layout component, since it has no path so will match all url paths , instead of the appropriate child.
 
 ### relative paths
--  A path that doesnt begin with / , slash is dedicated to the homepage so if you start with slash react router will treat it like an absolute path. If you dont use a salsh it tretas it like a relative path, ie relative to its parent route. If the parent has not path like in a pathless route 
+-  A path that doesnt begin with a `/` , slash is dedicated to the homepage so if you start with slash, react router will treat it like an absolute path. If you dont use a slash it treats it like a relative path, i.e, relative to its parent route. If the parent has not path like in a pathless route ...
 
 ```jsx
 //nested routes with absolute paths
