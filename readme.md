@@ -143,10 +143,14 @@ When talking about nested routes we are talking about:
     </Route>
   </Route>
 ```
+
+- The difference between a **layout route with a path** and **one without**(<Layout /> vs <HostLayout />) is that the pathless one will apply to everything since everthing is a child of that layout route. That is why we still see a navigation bar no matter how deep in the routes we visit.
+
 ### Index routes
 - If I have an element that i want to display in the outlet of the layout component but i want it to be at the same route as what the layout compnent is defined at i can replace the path with the prop called index. Can be seen with the HostLayout having the same path as Dashboard component which would force us to write `http://localhost:3000/host/host` which isn't advisable. Using the prop index will fix this since it is saying that I want you to put the component with index inside the outlet of the parent route when it matches.
 
 ```jsx
+  //Example 1
     <Route path="host" element={<HostLayout />}>
       <Route path="host" element={<Dashboard />} />
     </Route>
@@ -157,7 +161,43 @@ When talking about nested routes we are talking about:
     </Route>
 ```
 
-- The difference between a layout route with a path and one without(<Layout /> vs <HostLayout />) is that the pathless one will apply to everything since everthing is a child of that layout route. That is why we still see a navigation bar no matter how deep in the routes we visit.
+```jsx
+
+    //Example 2
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="vans" element={<Vans />} />
+          <Route path="vans/:id" element={<VanDetail />} />
+          
+          <Route path="host" element={<HostLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="income" element={<Income />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+        </Route>
+      </Routes>
+
+      //alternative with index route
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="vans" element={<Vans />} />
+          <Route path="vans/:id" element={<VanDetail />} />
+          
+          <Route path="host" element={<HostLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="income" element={<Income />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+        </Route>
+      </Routes>      
+```
+
+#### To Nest or Not to Nest
+
 
 
 
