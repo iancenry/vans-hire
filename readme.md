@@ -201,8 +201,19 @@ When talking about nested routes we are talking about:
 - The main reason you should nest is when you want to keep displaying some UI on the page, but also want to display more. 
 - **NB** Do not nest when you just want to avoid repetition in your paths such as the `vans` and `vans/:id`. These two paths don't share the same UI so there is no need for nesting `vans/:id` into `vans`.
 
+#### Recap
+1. What is the primary reason to use a nested route?
+Whenever we have some shared UI between routes in our app.
 
+2. What is a "Layout Route"?
+It's the parent route of some nested routes that contains just the portion of the UI that will be shared whe you move from one nested route to another. It will use an Outlet component.
 
+3. What does the <Outlet /> component do? When do you use it?
+We use it anytime we have a parent Route that's wrapping children routes. It renders the matching child route's `element` prop given in its route definition
+
+4. What is an "Index Route"?
+It's the "default route" we want to render when the path of the parent route matches. It gives us a chance to render an element inside the parent's <Outlet /> at the same path
+as the parent route.
 
 
 
