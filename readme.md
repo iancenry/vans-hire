@@ -197,6 +197,8 @@ When talking about nested routes we are talking about:
 ```
 
 #### To Nest or Not to Nest
+- The main reason you should nest is when you want to keep displaying some UI on the page, but also want to display more. 
+- **NB** Do not nest when you just want to avoid repetition in your paths such as the `vans` and `vans/:id`. These two paths don't share the same UI so there is no need for nesting `vans/:id` into `vans`.
 
 
 
