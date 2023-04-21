@@ -110,6 +110,7 @@ When talking about nested routes we are talking about:
 ### Layout Routes
 - Don't have a path of their own but their purpose is to *lay out* the page; we want all our pages to have a header and a footer.
 - Outlet will help us create a hole in our component where the matching route that is a child of the parent route can render. Without it we will only see the Layout component, since it has no path so will match all url paths , instead of the appropriate child.
+- **NB** Layout routes are only for shared UI
 
 ### relative paths
 -  A path that doesnt begin with a `/` , slash is dedicated to the homepage so if you start with slash, react router will treat it like an absolute path. If you dont use a slash it treats it like a relative path, i.e, relative to its parent route. If the parent has no path like in a pathless route it assumes that it is one of the first pages/first section of the url (i.e, about, vans, vans/:id).
