@@ -83,3 +83,9 @@ footer{
   font-size: 14px;
   color: #AAAAAA;
 }
+
+.spacer{
+  margin-bottom: 60px; /* how high is your footer */
+  visibility: hidden; 
+}
+
