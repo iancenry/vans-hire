@@ -217,27 +217,48 @@ as the parent route.
 
 
 
-
-
-
-
-
-
+### NavLink
+- Most times we want the user to know the page they are currently in lets say by highlighting the link. React router uses `render props` to do this. 
+- NavLink is similar to link but the style props and classname prop can both take a function as its value. 
+- We can provide a function to the className and whatever it returns will be the actual className that is applied. React router will pass the function an object and the object will already have a property called isActive which we can destructure to access it instead of using Object.isActive. 
+- The isActive property is a boolean and describes whether the route is the current active one.
+- Instead of className we can use inline style. Example below shows both.
 
 ```jsx
+  const activeStyle = {
+    fontWeight: "bold", 
+    textDecoration: "underline",
+    color: "red"
+  }
 
-{/* 
-          <Route path='/host' element={<Host />} >
-            <Route path='/host/income' element={<HostIncome />} />
-            <Route path='/host/reviews' element={<HostReviews />} />
-            <Route path='/host/vans' element={<HostVans />} />
-            <Route path='/host/vans/:id' element={<HostVan />} />
-            <Route path='/host/vans/:id/pricing' element={<Pricing />} />
-            <Route path='/host/vans/:id/photos' element={<Photos />} />
-          </ Route> */}
+  <NavLink 
+    to="/about"
+    className={({isActive}) => isActive ? "my-link" : null }
+    style={({isActive}) => isActive ? activeStyle : null }
+  >
+      About
+  </NavLink>
 
-
-          {/* <footer>
-          <span>&copy; #VANLIFE</span>
-        </footer> */}
+  <NavLink 
+    to="/contact"
+    className={({isActive}) => isActive ? "my-link" : null }
+    style={({isActive}) => isActive ? activeStyle : null }
+  >
+      Contact
+  </NavLink>
 ```
+
+- todo
+  /**
+     * Challenge - part 1:
+     * Make the main navbar indicate the currently-active route. (You can
+     * leave the home link alone, since it's doubling as our logo. Only
+     * make changes to the /host, /about, and /vans links)
+     * 
+     * Use the following CSS rules:
+     *      font-weight: bold;
+     *      text-decoration: underline;
+     *      color: #161616;
+     * 
+     * You can use either inline styles or a className.
+     */
