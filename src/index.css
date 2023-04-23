@@ -13,11 +13,6 @@
   padding: 0;
 }
 
-/* html, body {
-  background-color: #FFF7ED;
-
-} */
-
 body::-webkit-scrollbar {
 display: none;
 }
@@ -40,6 +35,12 @@ header .site-logo {
   text-transform: uppercase;
   font-weight: 900;
   font-size: 25px;
+}
+
+a.active-link{
+  font-weight: bold;
+  text-decoration: underline;
+  color: #161616;
 }
 
 header a {
