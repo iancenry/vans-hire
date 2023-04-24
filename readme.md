@@ -248,3 +248,23 @@ as the parent route.
   </NavLink>
 ```
 - use `end` with NavLink styles/classes and it tells react-router to end the matching of routes 'here'. If a more nested route matches it wont also match the 'ended' NavLink on that route.
+
+
+## Relative Links
+- In our HostLayout.jsx when creating NavLinks i created them as abssolute paths i,e `/host`, `/host/income` etc. However we dont need to do that beacuse the HostLayout component is getting rendered in `<Route path="host" element={<HostLayout />}>` which is already a child of the `slash(/))` route. Because our element is part of the route for path of host the element can assume the path of host in all of its links. So in our HostLayout i can change the links as follows:
+```jsx
+    <NavLink to="/host" end style={({isActive}) => isActive ? activeStyles : null}>Dashboard</NavLink>
+    <NavLink to="/host/income" style={({isActive}) => isActive ? activeStyles : null}>Income</NavLink>
+    <NavLink to="/host/vans" style={({isActive}) => isActive ? activeStyles : null}>Vans</NavLink>
+    <NavLink to="/host/reviews" style={({isActive}) => isActive ? activeStyles : null}>reviews</NavLink>
+
+    //relative links
+    //the dot(.) mean is i want the dashboard to link me to the current route where the host layout is being rendered; the host layout is being rendered on the path of 'host' 
+    <NavLink to="." end style={({isActive}) => isActive ? activeStyles : null}>Dashboard</NavLink>
+    <NavLink to="income" style={({isActive}) => isActive ? activeStyles : null}>Income</NavLink>
+    <NavLink to="vans" style={({isActive}) => isActive ? activeStyles : null}>Vans</NavLink>
+    <NavLink to="reviews" style={({isActive}) => isActive ? activeStyles : null}>reviews</NavLink>
+```
+
+- SO if we had links inside the income component `<Route path="income" element={<Income />} />` we wouldn;t need to specify the whole path leading upto income
+- The benefit of using relative routes and links is that if for whatever readon we decide to change the path name of the parent route the link wont be broken.
