@@ -251,7 +251,8 @@ as the parent route.
 
 
 ## Relative Links
-- In our HostLayout.jsx when creating NavLinks i created them as abssolute paths i,e `/host`, `/host/income` etc. However we dont need to do that beacuse the HostLayout component is getting rendered in `<Route path="host" element={<HostLayout />}>` which is already a child of the `slash(/))` route. Because our element is part of the route for path of host the element can assume the path of host in all of its links. So in our HostLayout i can change the links as follows:
+- In our HostLayout.jsx when creating NavLinks we created them as abssolute paths i.e, `/host`, `/host/income` etc. However we dont need to do that because the HostLayout component is getting rendered in `<Route path="host" element={<HostLayout />}>` which is already a child of the `slash(/))` route. Because our element is part of the route for path of host the element can assume the path of host in all of its links. So in our HostLayout change the links as follows:
+
 ```jsx
     <NavLink to="/host" end style={({isActive}) => isActive ? activeStyles : null}>Dashboard</NavLink>
     <NavLink to="/host/income" style={({isActive}) => isActive ? activeStyles : null}>Income</NavLink>
@@ -266,5 +267,5 @@ as the parent route.
     <NavLink to="reviews" style={({isActive}) => isActive ? activeStyles : null}>reviews</NavLink>
 ```
 
-- SO if we had links inside the income component `<Route path="income" element={<Income />} />` we wouldn;t need to specify the whole path leading upto income
-- The benefit of using relative routes and links is that if for whatever readon we decide to change the path name of the parent route the link wont be broken.
+- SOo if we had links inside the income component `<Route path="income" element={<Income />} />` we wouldn't need to specify the whole path leading upto income.
+- The benefit of using relative routes and links is that if for whatever reason we decide to change the path name of the parent route the link wont be broken.
