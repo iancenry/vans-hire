@@ -5,7 +5,10 @@ import VanDetail from "./Vans/VanDetail";
 import Dashboard from "./Host/Dashboard"
 import Income from "./Host/Income"
 import Reviews from "./Host/Reviews"
+import HostVans from "./Host/HostVans";
+import HostVanDetail from "./Host/HostVanDetail";
+
 
 export {
-  Home, About, Vans, VanDetail, Dashboard, Income, Reviews
+  Home, About, Vans, VanDetail, Dashboard, Income, Reviews, HostVans, HostVanDetail
 };
