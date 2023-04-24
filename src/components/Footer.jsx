@@ -2,7 +2,7 @@
 const Footer = () => {
   return (
     <>
-    <div  class="spacer"> . </div> 
+    <div  className="spacer"> . </div> 
     <footer>
        <span>&copy; #VANLIFE</span>
      </footer>
