@@ -102,11 +102,11 @@
 When talking about nested routes we are talking about:
   - Nested routes means nesting pieces of the url - `/van/van-id-or-name`
   - Prescence of a shared UI or parts of the page that need to remain on the page when we transition from one route to a child route or nested route. The shared UI can be a navigation bar.
-  
+
     * Add nested UI image
 
 - To nest a route we need to change it from a self closing component to it having an opening and closing tag.
-- Use nested routes when you want to keep displaying some UI on the page, but also want to display more. A page changing a small or large portion.
+- Use nested routes when you want to keep displaying same UI on the page, but also want to display more. A page changing a small or large portion.
 
 ### Layout Routes
 - Don't have a path of their own but their purpose is to *lay out* the page; we want all our pages to have a header and a footer.
