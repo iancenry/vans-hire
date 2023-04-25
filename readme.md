@@ -149,7 +149,7 @@ When talking about nested routes we are talking about:
 - The difference between a **layout route with a path** and **one without**(<Layout /> vs <HostLayout />) is that the pathless one will apply to everything since everthing is a child of that layout route. That is why we still see a navigation bar no matter how deep in the routes we visit.
 
 ### Index routes
-- If I have an element that i want to display in the outlet of the layout component but i want it to be at the same route as what the layout compnent is defined at i can replace the path with the prop called index. Can be seen with the HostLayout having the same path as Dashboard component which would force us to write `http://localhost:3000/host/host` which isn't advisable. Using the prop index will fix this since it is saying that I want you to put the component with index inside the outlet of the parent route when it matches.
+- If I have an element that i want to display in the outlet of the layout component but i want it to be at the same route as what the layout compnent is defined at i can replace the path with the prop called index. Can be seen with the HostLayout having the same path as Dashboard component which would force us to write `http://localhost:3000/host/host` which isn't advisable. Using the `index prop` will fix this since it is saying that I want you to put the component with index inside the outlet of the parent route when it matches.
 
 ```jsx
   //Example 1
@@ -220,7 +220,7 @@ as the parent route.
 
 ### NavLink
 - Most times we want the user to know the page they are currently in lets say by highlighting the link. React router uses `render props` to do this. 
-- NavLink is similar to link but the style props and classname prop can both take a function as its value. 
+- NavLink is similar to link but the style props and className prop can both take a function as their value. 
 - We can provide a function to the className and whatever it returns will be the actual className that is applied. React router will pass the function an object and the object will already have a property called isActive which we can destructure to access it instead of using Object.isActive. 
 - The isActive property is a boolean and describes whether the route is the current active one.
 - Instead of className we can use inline style. Example below shows both.
@@ -270,3 +270,9 @@ as the parent route.
 
 - So if we had links inside the income component `<Route path="income" element={<Income />} />` we wouldn't need to specify the whole path leading upto income.
 - The benefit of using relative routes and links is that if for whatever reason we decide to change the path name of the parent route the link wont be broken.
+
+
+### Going Back
+- To go back we can use the `..` relative path, the default in react router isn;t to go back exactly one route up e.g from `vans/:id` to `vans` under the host route but it is to go one level into the parent route i.e `vans/:id` to `host`. 
+- To fix this issue since we are going back to a sibling we add a `relative prop` where we can tell it to be relative to the path not the route. So that whwn we say we are going back a route it means we are going back one level back in our path structure not up a level in our routing hierarchy.
+**NB** The `..` can be thought of how we cd back a folder and we use `.` to refer to the current folder
