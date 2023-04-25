@@ -91,7 +91,7 @@
 ```jsx
   <Route path="/products/:productId" element={<ProductDetail />} />
 ```
-- Use useParams hook provided by react-router-dom to grab url parameters.
+- Use `useParams` hook provided by react-router-dom to grab url parameters.
 
 ```jsx
   const params = useParams()
@@ -100,8 +100,9 @@
 
 ### Nested Routes 
 When talking about nested routes we are talking about:
-  - Nested routes means nesting pieces of the url - /van/van-id-or-name
-  - Prescence of a shared UI or parts of the page that need to remain on th epage when we transition from one route to a child route or nested route. The shared UI can be a navigation bar.
+  - Nested routes means nesting pieces of the url - `/van/van-id-or-name`
+  - Prescence of a shared UI or parts of the page that need to remain on the page when we transition from one route to a child route or nested route. The shared UI can be a navigation bar.
+  
     * Add nested UI image
 
 - To nest a route we need to change it from a self closing component to it having an opening and closing tag.
