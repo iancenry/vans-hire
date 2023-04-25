@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 const HostVanDetail = () => {
   const {id} = useParams()
@@ -15,12 +15,20 @@ const HostVanDetail = () => {
   if(!currentVan) return <h1>Loading...</h1>
 
   return (
-    <div>
-      <img src={`/src/assets/images/${currentVan.imageUrl}`} alt={currentVan.name} width={150} />   
-      <h2>{currentVan.name}</h2>         
-      <p>${currentVan.price}</p>         
-      <p>{currentVan.type}</p>         
-    </div>
+    <section>
+      <Link to=".." className="back-button">&larr; <span>Back to all vans</span></Link>
+      <div className="host-van-detail-layout-container">
+        <div className="host-van-detail">
+          <img src={`/src/assets/images/${currentVan.imageUrl}`} alt={currentVan.name}/>  
+          <div className="host-van-detail-info-text">
+          <i className={`van-button van-button-${currentVan?.type}`}>{currentVan.type}</i>         
+          <h3>{currentVan.name}</h3>
+          <h4>${currentVan.price}/day</h4>
+          </div>
+        </div>
+      </div>             
+      
+    </section>
   )
 }
 
