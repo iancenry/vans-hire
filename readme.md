@@ -267,5 +267,5 @@ as the parent route.
     <NavLink to="reviews" style={({isActive}) => isActive ? activeStyles : null}>reviews</NavLink>
 ```
 
-- SOo if we had links inside the income component `<Route path="income" element={<Income />} />` we wouldn't need to specify the whole path leading upto income.
+- So if we had links inside the income component `<Route path="income" element={<Income />} />` we wouldn't need to specify the whole path leading upto income.
 - The benefit of using relative routes and links is that if for whatever reason we decide to change the path name of the parent route the link wont be broken.
