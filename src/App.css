@@ -151,13 +151,23 @@
 
 .van-button {
   display: inline-block;
-  background-color: #E17654;
   text-decoration: none;
   padding: .75rem 1.375rem;
   font-weight: 700;
   border-radius: 5px;
   cursor: pointer;
   transition: transform .1s ease-in-out;
+  color: #FFF;
+}
+
+.van-button-luxury{
+  background-color: #161616;
+}
+.van-button-simple{
+  background-color: #E17654;
+}
+.van-button-rugged{
+  background-color: #115E59;
 }
 
 .van-button:hover {
@@ -273,5 +283,37 @@
 .host-van-info p {
   margin-block: 10px;
   text-align: left;
+}
+
+.host-van-detail-layout-container {
+  background-color: white;
+  width: 80%;
+  padding: 24px;
+  margin: 30px auto;
+}
+
+.host-van-detail {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.host-van-detail > img {
+  height: 160px;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.host-van-detail-info-text > h3 {
+  margin-top: 24px;
+  margin-bottom: 5px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.host-van-detail-info-text > h4 {
+  font-size: 20px;
+  margin-block: 0;
+  
 }
 
