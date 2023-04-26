@@ -276,3 +276,5 @@ as the parent route.
 - To go back we can use the `..` relative path, the default in react router isn;t to go back exactly one route up e.g from `vans/:id` to `vans` under the host route but it is to go one level into the parent route i.e `vans/:id` to `host`. 
 - To fix this issue since we are going back to a sibling we add a `relative prop` where we can tell it to be relative to the path not the route. So that whwn we say we are going back a route it means we are going back one level back in our path structure not up a level in our routing hierarchy.
 **NB** The `..` can be thought of how we cd back a folder and we use `.` to refer to the current folder
+
+- cont from 3:09:24
