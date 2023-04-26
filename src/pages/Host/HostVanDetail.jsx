@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, Outlet, NavLink } from "react-router-dom"
 
 const HostVanDetail = () => {
   const {id} = useParams()
@@ -26,6 +26,13 @@ const HostVanDetail = () => {
           <h4>${currentVan.price}/day</h4>
           </div>
         </div>
+
+        <nav className="host-van-detail-nav">
+          <NavLink end to="." className={({isActive}) => isActive ? "active-link" : null}>Info</NavLink>
+          <NavLink to="pricing" className={({isActive}) => isActive ? "active-link" : null}>Pricing</NavLink>
+          <NavLink to="photos" className={({isActive}) => isActive ? "active-link" : null}>Photos</NavLink>
+        </nav>
+        <Outlet />          
       </div>             
       
     </section>
