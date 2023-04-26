@@ -16,7 +16,7 @@ const HostVanDetail = () => {
 
   return (
     <section>
-      <Link to=".." className="back-button">&larr; <span>Back to all vans</span></Link>
+      <Link to=".." className="back-button" relative="path">&larr; <span>Back to all vans</span></Link>
       <div className="host-van-detail-layout-container">
         <div className="host-van-detail">
           <img src={`/src/assets/images/${currentVan.imageUrl}`} alt={currentVan.name}/>  
