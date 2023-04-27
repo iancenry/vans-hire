@@ -11,7 +11,7 @@ const HostVanDetail = () => {
       .then(data => setCurrentVan(data.vans))
   }, [])
 
-  //TODO replace with an actual loading state; this is a shortcut
+  //TODO replace with an actual loading state
   if(!currentVan) return <h1>Loading...</h1>
 
   return (
@@ -33,8 +33,7 @@ const HostVanDetail = () => {
           <NavLink to="photos" className={({isActive}) => isActive ? "active-link" : null}>Photos</NavLink>
         </nav>
         <Outlet />          
-      </div>             
-      
+      </div>     
     </section>
   )
 }
