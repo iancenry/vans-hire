@@ -32,7 +32,7 @@ const HostVanDetail = () => {
           <NavLink to="pricing" className={({isActive}) => isActive ? "active-link" : null}>Pricing</NavLink>
           <NavLink to="photos" className={({isActive}) => isActive ? "active-link" : null}>Photos</NavLink>
         </nav>
-        <Outlet />          
+        <Outlet context={{currentVan}} />          
       </div>     
     </section>
   )
