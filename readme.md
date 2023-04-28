@@ -279,3 +279,11 @@ as the parent route.
 
 
 ### Outlet Context
+- Outlet is just be a context provider which accepts a `context` prop and the values passed into the prop will be receivable by the other components using the `useOutletContext` hook.
+- Below I am passing in an object which will have a currentVan property whose value is the currentBan object; also written as `{currentVan: currentVan}`. The `currentVan` is paassed within curly braces more often than just passing the entire object by itself.
+```jsx
+<Outlet context={{currentVan}} />
+
+//In the 'child' within an outlet we can access the currentVan by destructuing since currentVan is an object which has the currentVan property.
+const {currentVan} = useOutletContext()
+```
