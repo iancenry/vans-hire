@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 const Van = ({name, price, image, type, id}) => {
     return (    
@@ -13,13 +13,14 @@ const Van = ({name, price, image, type, id}) => {
             <i className={`van-button van-button-${type}`}>{type}</i>   
         </div>
     </Link>    
-    
-
 )
 }
 
 const Vans = () => {  
     const [vans, setVans] = useState([]) 
+
+    const [searchParams, setSearchParams] = useSearchParams()
+    const typeFilter = searchParams.get("type")
 
     useEffect(() => {
         fetch('api/vans')
@@ -27,13 +28,16 @@ const Vans = () => {
             .then(data => setVans(data.vans))
     }, [])
 
-    let vansArray = vans.map( van => (
+    //if there is a type filter vans that match condition will be added to variable else add all vans
+    const displayedVans = typeFilter ?  vans.filter(van => van.type.toLowerCase() === typeFilter ) : vans
+
+    let vansArray = displayedVans.map( van => (
         <Van key={van.id} id={van.id} name={van.name} price={van.price} image={van.imageUrl} type={van.type} />
     ))
 
   return (
     <div>
-        <h1>Explore our van options</h1>
+        <h1 className='van-header'>Explore our van options</h1>
         <div className="vans">{vansArray}</div>
         
 
