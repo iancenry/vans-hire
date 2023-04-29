@@ -1,8 +1,6 @@
 #root {
   max-width: 100%;
   margin: 0 auto;
-  /* padding: 2rem; */
-  text-align: center;
 }
 
 
@@ -60,7 +58,8 @@
 .about-page-container{
   width: 60%;
   margin: 0 auto;
-  justify-content: center;
+  text-align: center;
+
 }
 
 .about-hero-image {
@@ -81,6 +80,8 @@
 
 .about-page-content p {
   line-height: 22px;
+  text-align: left;
+
 }
 
 .about-page-cta {
@@ -112,6 +113,10 @@
   width: 80%;
   margin: 50px auto 0;
   gap: 25px;
+}
+
+.van-header{
+  text-align: center;
 }
 
 .vans a {
@@ -257,6 +262,7 @@
 .host-vans-title {
   padding-inline: 26px;
   margin-bottom: 40px;
+  text-align: center;
 }
 
 .host-van-single {
@@ -342,5 +348,34 @@
   color: #161616;
   text-decoration: underline;
   font-weight: 700;
+}
+
+.host-van-detail-info{
+  text-align: left;
+}
+
+.host-van-detail-info > h4 {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  margin: 10px 0;
+}
+.host-van-detail-info > h4 > span {
+  font-weight: 500;
+}
+
+.host-van-price {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.host-van-price > span {
+  font-size: 16px;
+  color: #4D4D4D;
+}
+
+.host-van-detail-image {
+  height: 100px;
+  border-radius: 5px;
 }
 
