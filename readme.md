@@ -299,8 +299,32 @@ const {currentVan} = useOutletContext()
 - To handle search parameters we use the `useSearchParams()` hook; has the same syntax as `useState` hook.
   - It has several methods such as `.get("type")` where we can provide a key name and it will return that value. `.toString()` will return the full picture of what the search params contain. etc
 - state lives in a component but search params live in the URL.
-- We can `use links to add search params` - we can use a link to specify a query/
+
+### Adding search/query params
+- We can use `links` to specify a query parameter. 
 
 ```jsx
-<Link to="?type=rugged">Rugged</Link>
+    <Link to="?type=luxury" className='van-type luxury'>Luxury</Link>
+    <Link to="?type=simple" className='van-type simple' >Simple</Link>
+    <Link to="?type=rugged" className='van-type rugged'>Rugged</Link>
+    <Link to="." className='van-type clear-filters'>Clear filter</Link>
+```
+
+- We can also utilize the state setter function that we recived when we initialize our searchParams. We can specify in it what our new search params will be. We create buttos with `onClick` event handler which calls  our setSearchParams setter function.
+  - Just like with useState the setter function can either take a new value for the searchParams which will completely replace the old value or it can take a callback function.
+  1. Taking in a new value. Can begin with a question mark
+
+```jsx
+    <button onClick={() => setSearchParams("?type=luxury")}>Luxury</button>
+    <button onClick={() => setSearchParams("type=simple")}>Simple</button>
+    <button onClick={() => setSearchParams("type=rugged")}>Rugged</button>
+    <button onClick={() => setSearchParams("")}>Clear</button>
+```
+  1. Using a record/object initialization, more common
+
+```jsx
+    <button onClick={() => setSearchParams({type : "luxury"})}>Luxury</button>
+    <button onClick={() => setSearchParams({type : "simple"})}>Simple</button>
+    <button onClick={() => setSearchParams({type : "rugged"})}>Rugged</button>
+    <button onClick={() => setSearchParams("")}>Clear</button>
 ```
