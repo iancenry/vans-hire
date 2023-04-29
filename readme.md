@@ -297,5 +297,10 @@ const {currentVan} = useOutletContext()
 - `Query parameters` are part of the URL and represent key/value pairs of information that can live directly in the URL. Create by starting with a `?` => `/vans?type=rugged`.
   - Also you can have multiple and are separated by `&` => `/vans?type=rugged&filterBy=price`
 - To handle search parameters we use the `useSearchParams()` hook; has the same syntax as `useState` hook.
-  - It has several methods such as `.get()` where we can provide a key name and it will return that value. `.toString()` will return the full picture of what the search params contain.
+  - It has several methods such as `.get("type")` where we can provide a key name and it will return that value. `.toString()` will return the full picture of what the search params contain. etc
 - state lives in a component but search params live in the URL.
+- We can `use links to add search params` - we can use a link to specify a query/
+
+```jsx
+<Link to="?type=rugged">Rugged</Link>
+```
