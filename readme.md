@@ -287,3 +287,15 @@ as the parent route.
 //In the 'child' within an outlet we can access the currentVan by destructuing since currentVan is an object which has the currentVan property.
 const {currentVan} = useOutletContext()
 ```
+
+### Search/Query Parameters
+- Can represent some kind of change in the UI where you actually see on on the page in the app.
+- Common tasks for query parameters - sorting, filtering, pagination
+- Think of query parameters as a "single source of truth" for a certain application state.
+**NB** Ask yourself: "Should a user be able to revisit or share this page just like it is? If `yes`, then you might consider `raising that state up` to the URL in a query parameter.
+- What about state? Since refresh is akin to loading the app for the first time and state is lost, we can't share the current state with a friend using react state since when they load it the state will be new.
+- `Query parameters` are part of the URL and represent key/value pairs of information that can live directly in the URL. Create by starting with a `?` => `/vans?type=rugged`.
+  - Also you can have multiple and are separated by `&` => `/vans?type=rugged&filterBy=price`
+- To handle search parameters we use the `useSearchParams()` hook; has the same syntax as `useState` hook.
+  - It has several methods such as `.get()` where we can provide a key name and it will return that value. `.toString()` will return the full picture of what the search params contain.
+- state lives in a component but search params live in the URL.
