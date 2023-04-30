@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 
 const Van = ({name, price, image, type, id}) => {
     return (    
-    <Link to={`/vans/${id}`}>
+    <Link to={id}>
         <div className="van-card">
             <img src={`/src/assets/images/${image}`} alt={name} width='100%'  />
             <div className="van-details">
