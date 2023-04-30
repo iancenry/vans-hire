@@ -26,7 +26,7 @@ header {
   height: 100px;
   display: flex;
   align-items: center;
-  padding: 0 60px;
+  padding: 0 4%;
 }
 
 header .site-logo {
@@ -47,7 +47,7 @@ header a {
   text-decoration: none;
   color: #4D4D4D;
   font-weight: 600;
-  padding: 5px 20px;
+  padding: 5px 15px;
 }
 
 header a:hover {
