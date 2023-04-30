@@ -232,6 +232,11 @@
   outline: none;
 }
 
+.van-type.selected {
+  color: #FFEAD0;
+}
+
+
 .van-type.simple:hover,
 .van-type.simple.selected {
   background-color: #e17654;
