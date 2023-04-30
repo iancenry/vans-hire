@@ -300,7 +300,7 @@ const {currentVan} = useOutletContext()
   - It has several methods such as `.get("type")` where we can provide a key name and it will return that value. `.toString()` will return the full picture of what the search params contain. etc
 - state lives in a component but search params live in the URL.
 
-### Adding search/query params
+#### Adding search/query params
 - We can use `links` to specify a query parameter. 
 
 ```jsx
@@ -320,11 +320,45 @@ const {currentVan} = useOutletContext()
     <button onClick={() => setSearchParams("type=rugged")}>Rugged</button>
     <button onClick={() => setSearchParams("")}>Clear</button>
 ```
-  1. Using a record/object initialization, more common
+  1. Using a record/object initialization, more common; there are other methods.
 
 ```jsx
     <button onClick={() => setSearchParams({type : "luxury"})}>Luxury</button>
     <button onClick={() => setSearchParams({type : "simple"})}>Simple</button>
     <button onClick={() => setSearchParams({type : "rugged"})}>Rugged</button>
-    <button onClick={() => setSearchParams("")}>Clear</button>
+    <button onClick={() => setSearchParams({})}>Clear</button>
 ```
+
+#### Caveats to setting params 
+- The above method can only be used if you know that there won't be any other query params in the project.
+- It is common to have more than one query param, each one dealing with a different part of the app or different page. However, the way we have structured it above by hard-coding the values /objects, as soon as we click a different button we lose the context of the query param in that the type will change and the clear will clear out everything not just the ones we care about in that specific component.
+- We have several methods to merge new query params with existing ones instead of completely replacing them.
+  1. Merging search params with links
+    * Using a query string - instead of hard-coding a tring in the `to` prop of a link, we will call a function but since the `to` prop is't an event handler like onClick is, we can run a function as soon as the component loads and that function will generate a string which will get put in its place inside the to prop. The methods below will concatenate the search param using `&` with any existing ones and the clear will only remove the `type` property on our search param.
+```jsx
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    //the function takes in a key and value
+    <Link to={genNewSearchParamString("type", "luxury")} >Luxury</Link>
+    <Link to={genNewSearchParamString("type", "simple")} >Simple</Link>
+    <Link to={genNewSearchParamString("type", null)} >Clear</Link>
+
+
+    function genNewSearchParamString(key, value){
+      //create a new set of search params using the URLSearchParams(vanilla js) constructor and initialize the new search params with the value of the old search params
+      const sp = new URLSearchParams(searchParams)
+
+      //use the search param methods to alter the objet we have created.
+      if(value === null){
+        sp.delete(key)
+      }  else {
+        sp.set(key, value)
+      } 
+      
+      console.log(sp.toString())
+      return `?${sp.toString()}`
+    }
+```
+
+  2. Merging search params with the setSearchParams function
+4:15:51
