@@ -343,7 +343,7 @@ const {currentVan} = useOutletContext()
     <Link to={genNewSearchParamString("type", "simple")} >Simple</Link>
     <Link to={genNewSearchParamString("type", null)} >Clear</Link>
 
-
+    //Sidenote: can be extracted into a utility folder since it is reusable for different parts
     function genNewSearchParamString(key, value){
       //create a new set of search params using the URLSearchParams(vanilla js) constructor and initialize the new search params with the value of the old search params
       const sp = new URLSearchParams(searchParams)
@@ -361,4 +361,26 @@ const {currentVan} = useOutletContext()
 ```
 
   2. Merging search params with the setSearchParams function
-4:15:51
+- The useSearchParam isn't only similar to useState in that it returns an array with 2 items that include the value and a function for setting the value but more deeply the setter can take in 2 arguments, a replacement value for the state or a callback funtion that receives the previous state so that you can make changes to it.
+
+```jsx
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  //the function takes in a key and value
+  <button onClick={() => handleFilterChange("type", "luxury")}>Luxury</button>
+  <button onClick={() => handleFilterChange("type", "simple")}>Simple</button>
+  <button onClick={() => handleFilterChange("type", "rugged")}>Rugged</button>
+  <button onClick={() => handleFilterChange("type", null)}>Clear</button>
+
+  function handleFilterChange(key, value){
+    setSearchParams(prevParams => {
+      if(value === null){
+        prevParams.delete("key")
+      } else{
+        prevParams.set(key, value)
+      }
+      return prevParams
+    })
+  }
+
+```
