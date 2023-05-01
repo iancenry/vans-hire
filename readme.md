@@ -384,3 +384,22 @@ const {currentVan} = useOutletContext()
   }
 
 ```
+
+### Link State
+- After filtering and clicking on a van we want to be able to go back but still displaying the previous filters. There is a `history state`, the browser has the ability to save some kind of state between one link/url and the next. React router has made it easy to add things to that `link state`.
+- We add a state to the <Link/> and pass a value to it that can be grabbed by the next route so that when we press back it can know what filter we had applied earlier.
+
+#### useLocation
+- this is a hook that is similar to useParams in that it  doesnt bring back an array like in useState. It returns an object with the current `pathame`, link `state` passed, `search` which contains any query string of current location/url, `hash` and `key`.
+- The limitation is that the state is specific in the browser and cant be copied and shared to another user.
+
+```jsx
+  //Vans.jsx - passing current filters(reflected in the search params) to the link state
+  <Link to={id} state={{search: searchParams.toString()}} >
+
+  </Link>
+  //VanDetail.jsx - accessing the link state in the browser through useLocation hook and passing the query params stored in it to the <Link /> so it can send the iser back to the previous page with the searchParams included if they exist.
+  const location = useLocation()  
+
+  <Link to={`..?${location.state ? location.state.search : ""}`} className="back-button" relative="path">&larr; <span>Back to all vans</span></Link>   
+```
