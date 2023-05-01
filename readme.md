@@ -406,4 +406,23 @@ const {currentVan} = useOutletContext()
   //we use optional chaining ie. in the past we had to type `location.state && location.state.search` nowadays with optinal chaining we only need ' location.state?.search '  
 ```
 
+#### Side quest - conditionally rendering the back button text to show back to luxury/simple/all/rugged
+```jsx
+  //1. using string manipulation method split at '=' and access the value in VanDetail.jsx
+  const backText = location.state?.search.split("=")[1] || "all"
+
+  <Link to={`..${search}`} className="back-button" relative="path">&larr; <span>Back to {backText} vans</span></Link>  
+
+
+  //2 .In vans I can pass more state through.
+  <Link to={id} state={{search: `?${searchParams.toString()}`, type: typeFilter}} > </Link>
+  // and in VanDetail I can grab that string with location.state.type
+  const type = location.state?.type || "all"
+
+  <Link to={`..${search}`} className="back-button" relative="path">&larr; <span>Back to {type} vans</span></Link>  
+
+
+  //2.  Because the string is a query string i can create a new instance of url search params and use .get() to access the value of the type param
+```
+
 
