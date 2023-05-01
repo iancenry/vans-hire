@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 
-const Van = ({name, price, image, type, id}) => {
+const Van = ({name, price, image, type, id, searchParams}) => {
     return (    
-    <Link to={id}>
+    <Link to={id} state={{search: `?${searchParams.toString()}`}} >
         <div className="van-card">
             <img src={`/src/assets/images/${image}`} alt={name} width='100%'  />
             <div className="van-details">
@@ -32,7 +32,7 @@ const Vans = () => {
     const displayedVans = typeFilter ?  vans.filter(van => van.type.toLowerCase() === typeFilter ) : vans
 
     let vansArray = displayedVans.map( van => (
-        <Van key={van.id} id={van.id} name={van.name} price={van.price} image={van.imageUrl} type={van.type} />
+        <Van key={van.id} id={van.id} name={van.name} price={van.price} image={van.imageUrl} type={van.type} searchParams={searchParams} />
     ))
 
   return (
