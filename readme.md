@@ -395,11 +395,15 @@ const {currentVan} = useOutletContext()
 
 ```jsx
   //Vans.jsx - passing current filters(reflected in the search params) to the link state
-  <Link to={id} state={{search: searchParams.toString()}} >
+  <Link to={id} state={{search: `?${searchParams.toString()}`}} >
 
   </Link>
   //VanDetail.jsx - accessing the link state in the browser through useLocation hook and passing the query params stored in it to the <Link /> so it can send the iser back to the previous page with the searchParams included if they exist.
   const location = useLocation()  
 
-  <Link to={`..?${location.state ? location.state.search : ""}`} className="back-button" relative="path">&larr; <span>Back to all vans</span></Link>   
+  <Link to={`..${location?.state !== null ?  location?.state?.search : "" }`} className="back-button" relative="path">&larr; <span>Back to all vans</span></Link> 
+
+  //we use optional chaining ie. in the past we had to type `location.state && location.state.search` nowadays with optinal chaining we only need ' location.state?.search '  
 ```
+
+
