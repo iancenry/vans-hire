@@ -262,12 +262,18 @@
 .van-detail-container {
   display: flex;
   justify-content: center;
+  flex-direction: row;
 }
 
 .van-detail {  
   color: #161616;
   width: 35%;
 }
+
+.van-detail > .back-button{
+  margin-bottom: 20px;  
+}
+
 
 @media screen and (max-width: 1200px) {
   .van-detail {  
