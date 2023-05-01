@@ -5,11 +5,11 @@ const VanDetail = () => {
   const params = useParams()
   const [van, setVan] = useState(null)  
 
-  const location = useLocation()  
+  const location = useLocation() 
+  //if search value exists set search to it else set to empty string 
   const search = location.state?.search || ""
 
-  console.log(params)
-
+  const backText = location.state?.search.split("=")[1] || "all"
 
   useEffect(() => {
       fetch(`/api/vans/${params.id}`)
@@ -21,7 +21,7 @@ const VanDetail = () => {
       <div className="van-detail-container">
           {van ? (
               <div className="van-detail">
-                  <Link to={`..${search}`} className="back-button" relative="path">&larr; <span>Back to all vans</span></Link>                  
+                  <Link to={`..${search}`} className="back-button" relative="path">&larr; <span>Back to {backText} vans</span></Link>                  
                   <img src={`/src/assets/images/${van.imageUrl}`} />
                   <i className={`van-button van-button-${van?.type}`}>{van.type}</i>   
                   <h2>{van.name}</h2>
