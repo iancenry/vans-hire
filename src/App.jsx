@@ -27,6 +27,7 @@ function App() {
                 <Route path="photos" element={<HostVanPhotos />} />
               </Route>
             </Route>
+            <Route path="*" element={<h1>Page Not Found</h1>} />
           </Route>
         </Routes>
       </Router>
