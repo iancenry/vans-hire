@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
+import { getVans } from '../../api'
 
 const Van = ({name, price, image, type, id, searchParams}) => {
     return (    
@@ -23,9 +24,12 @@ const Vans = () => {
     const typeFilter = searchParams.get("type")
 
     useEffect(() => {
-        fetch('api/vans')
-            .then(res => res.json())
-            .then(data => setVans(data.vans))
+        async function loadVans(){
+            const data = await getVans()
+            setVans(data)
+        }  
+        
+        loadVans()
     }, [])
 
     //if there is a type filter vans that match condition will be added to variable else add all vans
