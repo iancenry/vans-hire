@@ -425,4 +425,6 @@ const {currentVan} = useOutletContext()
   //2.  Because the string is a query string i can create a new instance of url search params and use .get() to access the value of the type param
 ```
 
-
+## 404 page
+- Helps give useful details if a user tries to access a path that doesn't exist in the site. Might happen due to outdates links or if user gets the link wrong
+- We can handle this with a `splat/catchall` route - in the path we use a universal/catchall selector which means that if there are no other routes listed use this route.
