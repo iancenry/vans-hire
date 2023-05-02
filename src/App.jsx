@@ -1,7 +1,7 @@
 import './App.css'
 import './server'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import { Home, About, Vans, VanDetail, Dashboard, Income, Reviews, HostVans, HostVanDetail, HostVanInfo, HostVanPhotos, HostVanPricing } from './pages'
+import { Home, About, Vans, VanDetail, Dashboard, Income, Reviews, HostVans, HostVanDetail, HostVanInfo, HostVanPhotos, HostVanPricing, NotFound } from './pages'
 import { Layout, HostLayout } from './components'
 
 
@@ -27,7 +27,7 @@ function App() {
                 <Route path="photos" element={<HostVanPhotos />} />
               </Route>
             </Route>
-            <Route path="*" element={<h1>Page Not Found</h1>} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </Router>
