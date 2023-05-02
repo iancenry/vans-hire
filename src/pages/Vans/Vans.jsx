@@ -19,20 +19,23 @@ const Van = ({name, price, image, type, id, searchParams}) => {
 
 const Vans = () => {  
     const [vans, setVans] = useState([]) 
+    const [isLoading, setIsLoading] = useState(false) 
 
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get("type")
 
     useEffect(() => {
         async function loadVans(){
+            setIsLoading(true)
             const data = await getVans()
             setVans(data)
+            setIsLoading(false)
         }  
-        
+                
         loadVans()
     }, [])
 
-    //if there is a type filter vans that match condition will be added to variable else add all vans
+    //if there is a type filter, vans that match condition are added to var else add all vans
     const displayedVans = typeFilter ?  vans.filter(van => van.type.toLowerCase() === typeFilter ) : vans
 
     let vansArray = displayedVans.map( van => (
