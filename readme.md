@@ -427,4 +427,6 @@ const {currentVan} = useOutletContext()
 
 ## 404 page
 - Helps give useful details if a user tries to access a path that doesn't exist in the site. Might happen due to outdates links or if user gets the link wrong
-- We can handle this with a `splat/catchall` route - in the path we use a universal/catchall selector which means that if there are no other routes listed use this route.
+- We can handle this with a `splat/catchall(*)` route - in the path we use a universal/catchall selector which means that if there are no other routes listed use this route.
+
+## Data Layer APIs
