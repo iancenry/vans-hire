@@ -104,3 +104,6 @@ footer{
   visibility: hidden; 
 }
 
+.loader{
+  text-align: center;
+}
