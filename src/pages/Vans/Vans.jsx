@@ -51,7 +51,7 @@ const Vans = () => {
             <button onClick={() => setSearchParams({type : "rugged"})} className={`van-type rugged ${typeFilter === 'rugged' && 'selected'}`}>Rugged</button>
             {typeFilter && <button onClick={() => setSearchParams({})} className='van-type clear-filters'>Clear</button>}
         </div>
-        {isLoading ? <div className='loader'> <img src="/src/assets/images/clouds-spinner.gif" alt="" />  </div> : <div className="vans">{vansArray}</div> }        
+        {isLoading ? <div className='loader'> <img src="/src/assets/images/clouds-spinner.gif" alt="" /> </div> : <div className="vans">{vansArray}</div> }        
     </div>
   )
 }
