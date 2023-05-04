@@ -20,6 +20,7 @@ const Van = ({name, price, image, type, id, searchParams}) => {
 const Vans = () => {  
     const [vans, setVans] = useState([]) 
     const [isLoading, setIsLoading] = useState(false) 
+    const [error, setError] = useState(false) 
 
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get("type")
