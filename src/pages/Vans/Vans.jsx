@@ -27,8 +27,15 @@ const Vans = () => {
     useEffect(() => {
         async function loadVans(){
             setIsLoading(true)
-            const data = await getVans()
-            setVans(data)
+            try {
+                const data = await getVans()
+                setVans(data)    
+            } catch (err) {
+                console.log("Err found")
+                console.log(err)
+                
+            }
+                       
             setIsLoading(false)
         }  
                 
@@ -38,7 +45,7 @@ const Vans = () => {
     //if there is a type filter, vans that match condition are added to var else add all vans
     const displayedVans = typeFilter ?  vans.filter(van => van.type.toLowerCase() === typeFilter ) : vans
 
-    let vansArray = displayedVans.map( van => (
+    let vansArray = displayedVans?.map( van => (
         <Van key={van.id} id={van.id} name={van.name} price={van.price} image={van.imageUrl} type={van.type} searchParams={searchParams} />
     ))
 
