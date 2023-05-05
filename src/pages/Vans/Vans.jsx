@@ -21,7 +21,7 @@ const Van = ({name, price, image, type, id, searchParams}) => {
 const Vans = () => {  
     const [vans, setVans] = useState([]) 
     const [isLoading, setIsLoading] = useState(false) 
-    const [error, setError] = useState(false) 
+    const [error, setError] = useState(null) 
 
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get("type")
@@ -33,8 +33,9 @@ const Vans = () => {
                 const data = await getVans()
                 setVans(data)    
             } catch (err) {
-                console.log("Err found")
-                console.log(err)                
+                setError(err)                
+            }finally{
+                setIsLoading(false)
             }
                        
             setIsLoading(false)
@@ -50,6 +51,16 @@ const Vans = () => {
         <Van key={van.id} id={van.id} name={van.name} price={van.price} image={van.imageUrl} type={van.type} searchParams={searchParams} />
     ))
 
+    function serverResult(){
+        if(isLoading){
+            return  <div className='loader'> <img src="/src/assets/images/clouds-spinner.gif" alt="" /> </div>
+        }else if(error){
+            return <div className='loader'> <h1>Server Error, Try Again Later. {error.message}</h1></div>
+        }else{
+            return <div className="vans">{vansArray}</div> 
+        }
+    } 
+
   return (
     <div>
         <h1 className='van-header'>Explore our van options</h1>
@@ -59,9 +70,11 @@ const Vans = () => {
             <button onClick={() => setSearchParams({type : "rugged"})} className={`van-type rugged ${typeFilter === 'rugged' && 'selected'}`}>Rugged</button>
             {typeFilter && <button onClick={() => setSearchParams({})} className='van-type clear-filters'>Clear</button>}
         </div>
-        {isLoading ? <div className='loader'> <img src="/src/assets/images/clouds-spinner.gif" alt="" /> </div> : <div className="vans">{vansArray}</div> }        
+        {serverResult()}        
     </div>
   )
 }
 
 export default Vans
+
+// TODO apply error and loading to VanDetail, HostVans, HostVanDetail
