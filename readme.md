@@ -430,5 +430,3 @@ const {currentVan} = useOutletContext()
 - We can handle this with a `splat/catchall(*)` route - in the path we use a universal/catchall selector which means that if there are no other routes listed use this route.
 
 ## Data Layer APIs
-
--  add loading gif to vans.jsx
