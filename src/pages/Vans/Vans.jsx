@@ -17,6 +17,7 @@ const Van = ({name, price, image, type, id, searchParams}) => {
 )
 }
 
+
 const Vans = () => {  
     const [vans, setVans] = useState([]) 
     const [isLoading, setIsLoading] = useState(false) 
@@ -33,8 +34,7 @@ const Vans = () => {
                 setVans(data)    
             } catch (err) {
                 console.log("Err found")
-                console.log(err)
-                
+                console.log(err)                
             }
                        
             setIsLoading(false)
