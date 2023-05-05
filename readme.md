@@ -430,3 +430,6 @@ const {currentVan} = useOutletContext()
 - We can handle this with a `splat/catchall(*)` route - in the path we use a universal/catchall selector which means that if there are no other routes listed use this route.
 
 ## Data Layer APIs
+- Without using data layer apis, We would need to set a loading and error state in components that do any sort of fetching, this leads to a lot of repetition and a lot happening just to handle the "sad path (accounting for errors)". A major reason why this is happening is because we are only starting our fetch request after a component loads. 
+- If we didn't load a component before we had access to the data we wouldn't have to worry about the above issue of handling errors in each component incase the data doesn't come back.
+- Data Layer APIs is a way that we can load our data before it ever transitions us to the route. This allows us to get rid of a lot of repititve code. *Refer to Vans.jsx before is commit*
