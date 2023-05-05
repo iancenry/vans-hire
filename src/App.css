@@ -102,10 +102,10 @@
 }
 
 /*** VANS PAGE ***/
-.vans{
+.vans {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around; 
+  justify-content: space-around;
   width: 80%;
   margin: 0 auto;
 }
@@ -125,8 +125,8 @@
   margin: 0 20px 150px 0;
 }
 
-@media screen and (max-width: 1200px){
-  .vans{
+@media screen and (max-width: 1200px) {
+  .vans {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -136,12 +136,11 @@
   }
 }
 
-@media screen and (max-width: 800px){
-  .vans{
+@media screen and (max-width: 800px) {
+  .vans {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-
 
 .van-card img {
   width: 100%;
@@ -193,7 +192,7 @@
 }
 
 /* filter */
-.van-list-filter-buttons{
+.van-list-filter-buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -224,9 +223,8 @@
 }
 
 .van-type.selected {
-  color: #FFEAD0;
+  color: #ffead0;
 }
-
 
 .van-type.simple:hover,
 .van-type.simple.selected {
@@ -244,9 +242,8 @@
 }
 
 .van-type.clear-filters:hover {
-  background-color: #ee2d2d;  
+  background-color: #ee2d2d;
 }
-
 
 /*** VAN DETAIL PAGE ***/
 
@@ -256,28 +253,26 @@
   flex-direction: row;
 }
 
-.van-detail {  
+.van-detail {
   color: #161616;
   width: 35%;
 }
 
-.van-detail > .back-button{
-  margin-bottom: 20px;  
+.van-detail > .back-button {
+  margin-bottom: 20px;
 }
 
-
 @media screen and (max-width: 1200px) {
-  .van-detail {  
+  .van-detail {
     width: 50%;
-  }  
+  }
 }
 
 @media screen and (max-width: 900px) {
-  .van-detail {  
+  .van-detail {
     width: 80%;
-  }  
+  }
 }
-
 
 .van-detail img {
   width: 100%;
@@ -463,9 +458,8 @@
   border-radius: 5px;
 }
 
-
-/* 404 */
-.NotFound-page{
+/* 404 Page */
+.NotFound-page {
   width: 50%;
   margin: 0 auto;
   margin-top: 40px;
@@ -476,7 +470,6 @@
   background-color: #161616;
   color: white;
   font-size: 16px;
-  display: block;  
+  display: block;
   margin-top: 50px;
 }
-
