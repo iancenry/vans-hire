@@ -1,5 +1,4 @@
 // library/utility functions - has all interface with apis
-
 export async function getVans(){
     const res = await fetch("/api/vans")
     if(!res.ok) {
