@@ -433,3 +433,8 @@ const {currentVan} = useOutletContext()
 - Without using data layer apis, We would need to set a loading and error state in components that do any sort of fetching, this leads to a lot of repetition and a lot happening just to handle the "sad path (accounting for errors)". A major reason why this is happening is because we are only starting our fetch request after a component loads. 
 - If we didn't load a component before we had access to the data we wouldn't have to worry about the above issue of handling errors in each component incase the data doesn't come back.
 - Data Layer APIs is a way that we can load our data before it ever transitions us to the route. This allows us to get rid of a lot of repititve code. *Refer to Vans.jsx before is commit*
+
+### Loaders
+- The way useEffect worked while fetching data is that: let's say we are on the about route, when I click the link to the Vans route, the about oage goes away and gets swapped for the Vans page and because we are fetching our data inside useEffect it immeadiately starts fetching the data. Once the request comes back we get some JSON from an api then react re-renders and takes that json and displays the data the way we specified.
+  - But because we are only loading the data after we have already mounted the component that reps our page, we have a lot of extra stuff we need to add: saving state for the fetched data, loading state, error state, useEffect and the error handling within, handling what displays if there is an error/loading etc.
+- Using a loader to fetch the data 
