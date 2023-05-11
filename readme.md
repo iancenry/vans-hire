@@ -203,20 +203,11 @@ When talking about nested routes we are talking about:
 - **NB** Do not nest when you just want to avoid repetition in your paths such as the `vans` and `vans/:id`. These two paths don't share the same UI so there is no need for nesting `vans/:id` into `vans`.
 
 #### Recap
-1. What is the primary reason to use a nested route?
-Whenever we have some shared UI between routes in our app.
-
-2. What is a "Layout Route"?
-It's the parent route of some nested routes that contains just the portion of the UI that will be shared whe you move from one nested route to another. It will use an Outlet component.
-
-3. What does the <Outlet /> component do? When do you use it?
-We use it anytime we have a parent Route that's wrapping children routes. It renders the matching child route's `element` prop given in its route definition
-
-4. What is an "Index Route"?
-It's the "default route" we want to render when the path of the parent route matches. It gives us a chance to render an element inside the parent's <Outlet /> at the same path
+1. What is the primary reason to use a nested route? Whenever we have some shared UI between routes in our app.
+2. What is a "Layout Route"? It's the parent route of some nested routes that contains just the portion of the UI that will be shared whe you move from one nested route to another. It will use an Outlet component.
+3. What does the <Outlet /> component do? When do you use it? We use it anytime we have a parent Route that's wrapping children routes. It renders the matching child route's `element` prop given in its route definition
+4. What is an "Index Route"? It's the "default route" we want to render when the path of the parent route matches. It gives us a chance to render an element inside the parent's <Outlet /> at the same path
 as the parent route.
-
-
 
 ### NavLink
 - Most times we want the user to know the page they are currently in lets say by highlighting the link. React router uses `render props` to do this. 
@@ -435,6 +426,62 @@ const {currentVan} = useOutletContext()
 - Data Layer APIs is a way that we can load our data before it ever transitions us to the route. This allows us to get rid of a lot of repititve code. *Refer to Vans.jsx before is commit*
 
 ### Loaders
-- The way useEffect worked while fetching data is that: let's say we are on the about route, when I click the link to the Vans route, the about oage goes away and gets swapped for the Vans page and because we are fetching our data inside useEffect it immeadiately starts fetching the data. Once the request comes back we get some JSON from an api then react re-renders and takes that json and displays the data the way we specified.
+- The way useEffect worked while fetching data is that: let's say we are on the about route, when I click the link to the vans route, the about oage goes away and gets swapped for the Vans page and because we are fetching our data inside useEffect it immeadiately starts fetching the data. Once the request comes back we get some JSON from an api then react re-renders and takes that json and displays the data the way we specified.
   - But because we are only loading the data after we have already mounted the component that reps our page, we have a lot of extra stuff we need to add: saving state for the fetched data, loading state, error state, useEffect and the error handling within, handling what displays if there is an error/loading etc.
-- Using a loader to fetch the data 
+- Using a loader to fetch the data: let's say we are on the about route, when I click the link to the vans route, the first thing that happens is it delays for a moment or two and during that delay it is starting the fetch request to get the data for the vans page. That way, when the data  comes back from the request, it is already a part of the vans page when it gets loaded up.
+  - How we'll use loaders:
+    1. Export a loader function from the page that fetches the data that page will need. Happens in Vans component.
+    2. Pass a loader prop to the Route that renders that page and pass in the loader function. Happens in App.jsx
+    3. Use the useLoaderData hook in the component to get the data. Happens in Vans component.
+
+### createBrowserRouter
+- Before we can take advantage of any of the data layer APIs we need to change the way we create our router. We need to create our BrowserRouter in a different way using createBrowserRouter function.
+- Previously we defined our routes based on a series of nested components, what happens under the hood is that the <Routes/> component actually takes every route that we have nested in it and turns it into a plain JS object, expresses them as an array of route objects:
+```js
+  [
+    {
+      path: "/",
+      element: <Home/>,
+      children: [{  /*child routes of <Home />*/ }]
+    }
+  ]
+``` 
+
+- With createBrowserRouter we can go down the path of rewriting all our routes manually into an array of objects like above or a simpler method would be to use the `createRoutesFromElements` utility function. So when we call `createBrowserRouter` we will call inside it `createRoutesFromElements`. That way I can put the Route elements directly inside the create routes from elements since the function will turn the <Route /> component into an object and then pass the object to `createBrowserRouter`. 
+
+```jsx
+  // Before
+  import {BrowserRouter, Routes, Route} from 'react-router-dom'
+
+  function HomePage(){
+    return (<main> <h1> Home Page</h1> </main>)
+  }
+
+  function App(){
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+        </Routes>
+      </BrowserRouter>
+    )
+  }
+
+  // After
+  import {RouterProvider, createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom'
+
+  function HomePage(){
+    return (<main> <h1> Home Page</h1> </main>)
+  }
+
+  const router = createBrowserRouter(createRoutesFromElements(
+    <Route path='/' element={<HomePage />} />
+  ))
+
+  function App(){
+    return (
+      <RouterProvider router={router} />
+    )
+  }
+
+```
