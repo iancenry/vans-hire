@@ -485,5 +485,32 @@ const {currentVan} = useOutletContext()
   }
 
 ```
+- Using the `useLoaderData` hook:
+```jsx
+//In HomePage.jsx
+export function loader(){
+  return "The data is here"
+}
 
-### useLoaderData
+export default function HomePage(){
+    useLoaderData
+
+    return (<main> <h1> Home Page</h1> </main>)
+}
+
+
+// in App.jsx
+import {RouterProvider, createBrowserRouter, createRoutesFromElements, useLoaderData, Route} from 'react-router-dom'
+import 
+  
+
+  const router = createBrowserRouter(createRoutesFromElements(
+    <Route path='/' element={<HomePage />} loader={homePageLoader} />
+  ))
+
+  function App(){
+    return (
+      <RouterProvider router={router} />
+    )
+  }
+```
