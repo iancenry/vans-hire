@@ -430,9 +430,9 @@ const {currentVan} = useOutletContext()
   - But because we are only loading the data after we have already mounted the component that reps our page, we have a lot of extra stuff we need to add: saving state for the fetched data, loading state, error state, useEffect and the error handling within, handling what displays if there is an error/loading etc.
 - Using a loader to fetch the data: let's say we are on the about route, when I click the link to the vans route, the first thing that happens is it delays for a moment or two and during that delay it is starting the fetch request to get the data for the vans page. That way, when the data  comes back from the request, it is already a part of the vans page when it gets loaded up.
   - How we'll use loaders:
-    1. Export a loader function from the page that fetches the data that page will need. Happens in Vans component.
-    2. Pass a loader prop to the Route that renders that page and pass in the loader function. Happens in App.jsx
-    3. Use the useLoaderData hook in the component to get the data. Happens in Vans component.
+    1. Export a `loader function` from the page that fetches the data that page will need. Happens in Vans component.
+    2. Pass a `loader prop` to the Route that renders that page and pass in the loader function. Happens in App.jsx
+    3. Use the `useLoaderData` hook in the component to get the data. Happens in Vans component.
 
 ### createBrowserRouter
 - Before we can take advantage of any of the data layer APIs we need to change the way we create our router. We need to create our BrowserRouter in a different way using createBrowserRouter function.
@@ -485,3 +485,5 @@ const {currentVan} = useOutletContext()
   }
 
 ```
+
+### useLoaderData
