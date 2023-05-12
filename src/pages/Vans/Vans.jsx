@@ -3,6 +3,10 @@ import { useSearchParams } from 'react-router-dom'
 import { getVans } from '../../api'
 import Van from './Van'
 
+export function loader(){
+    return "Vans data"
+}
+
 const Vans = () => {  
     const [vans, setVans] = useState([]) 
     const [isLoading, setIsLoading] = useState(false) 
