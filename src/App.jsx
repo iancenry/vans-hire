@@ -1,14 +1,14 @@
 import './App.css'
 import './server'
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom'
-import { Home, About, Vans, VanDetail, Dashboard, Income, Reviews, HostVans, HostVanDetail, HostVanInfo, HostVanPhotos, HostVanPricing, NotFound } from './pages'
+import { Home, About, Vans, loader as vansLoader, VanDetail, Dashboard, Income, Reviews, HostVans, HostVanDetail, HostVanInfo, HostVanPhotos, HostVanPricing, NotFound } from './pages'
 import { Layout, HostLayout } from './components'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<Layout />}>
     <Route path='/' element={<Home />} />
     <Route path='about' element={<About />} />
-    <Route path='vans' element={<Vans />} />
+    <Route path='vans' element={<Vans />} loader={vansLoader} />
     <Route path='vans/:id' element={<VanDetail />} />
             
     <Route path='host' element={<HostLayout />} >
