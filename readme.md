@@ -500,8 +500,8 @@ export default function HomePage(){
 
 
 // in App.jsx
-import {RouterProvider, createBrowserRouter, createRoutesFromElements, useLoaderData, Route} from 'react-router-dom'
-import 
+  import {RouterProvider, createBrowserRouter, createRoutesFromElements, useLoaderData, Route} from 'react-router-dom'
+  import HomePage, {loader as homePageLoader} from './Home'
   
 
   const router = createBrowserRouter(createRoutesFromElements(
