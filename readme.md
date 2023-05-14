@@ -516,3 +516,10 @@ export default function HomePage(){
     )
   }
 ```
+
+### errorElement
+- This is prop that renders an element if anything goes wrong. It handles more than just errors that happen in the loader, it can also handle if a user trys to access a property or function that doesn't exist; a general error within the component.
+
+```jsx
+  <Route path="/" element={<HomePage/>} errorElement={<ErrorPage />}/>
+```
