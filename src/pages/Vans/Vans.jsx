@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, useLoaderData } from 'react-router-dom'
 import { getVans } from '../../api'
 import Van from './Van'
 
@@ -14,6 +14,9 @@ const Vans = () => {
 
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get("type")
+
+    const data = useLoaderData()
+    console.log(data)
 
     useEffect(() => {
         async function loadVans(){
