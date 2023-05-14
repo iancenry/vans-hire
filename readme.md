@@ -488,13 +488,15 @@ const {currentVan} = useOutletContext()
 - Using the `useLoaderData` hook:
 ```jsx
 //In HomePage.jsx
+import {useLoaderData} from 'react-router-dom'
+
 export function loader(){
   return "The data is here"
 }
 
 export default function HomePage(){
-    useLoaderData
-
+    const data = useLoaderData()
+    console.log(data)
     return (<main> <h1> Home Page</h1> </main>)
 }
 
@@ -514,5 +516,3 @@ export default function HomePage(){
     )
   }
 ```
-
-5:25:36
