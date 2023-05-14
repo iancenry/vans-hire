@@ -4,37 +4,36 @@ import { getVans } from '../../api'
 import Van from './Van'
 
 export function loader(){
-    return "Vans data"
+    return getVans()
 }
 
 const Vans = () => {  
-    const [vans, setVans] = useState([]) 
+    // const [vans, setVans] = useState([]) 
     const [isLoading, setIsLoading] = useState(false) 
     const [error, setError] = useState(null) 
 
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get("type")
 
-    const data = useLoaderData()
-    console.log(data)
+    const vans = useLoaderData()
 
-    useEffect(() => {
-        async function loadVans(){
-            setIsLoading(true)
-            try {
-                const data = await getVans()
-                setVans(data)    
-            } catch (err) {
-                setError(err)                
-            }finally{
-                setIsLoading(false)
-            }
+    // useEffect(() => {
+    //     async function loadVans(){
+    //         setIsLoading(true)
+    //         try {
+    //             const data = await getVans()
+    //             setVans(data)    
+    //         } catch (err) {
+    //             setError(err)                
+    //         }finally{
+    //             setIsLoading(false)
+    //         }
                        
-            setIsLoading(false)
-        }  
+    //         setIsLoading(false)
+    //     }  
                 
-        loadVans()
-    }, [])
+    //     loadVans()
+    // }, [])
 
     //if there is a type filter, vans that match condition are added to var else add all vans
     const displayedVans = typeFilter ?  vans.filter(van => van.type.toLowerCase() === typeFilter ) : vans
