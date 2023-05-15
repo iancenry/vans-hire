@@ -2,23 +2,20 @@
 - Helps in doing client side routing. 
 
 ## MPA vs SPA
-  - `MPA (Multi Page Application)` - in traditional websites, a client requests for a html page of a site from the server, the server will then send an html file, with appropriate styles, as a response and the browser loads the page. When another link e.g the *about link* is clicked the same process will be repeated then the browser will replace the old homepage with the new about page. So when we click on a new page the old is entirely discarded then replaced with the new page from the server.
-  - `SPA (Single Page Application)` - used in react, it doesn't mean that you have only one page on your website but that the browser is only loading a single web document one time and then the app will make incremental updates to that exisitng document through different methods like internal react state changes or fetch requests to an API; for example we have a home page with a header, body and footer, when we click another page only the body us updated but the rest of the document remains the same.
+  - `MPA (Multi Page Application)` - in traditional websites, a client requests for a html page of a site from a server which will then send an html file, with appropriate styles, as a response and the browser loads the page. When another link e.g the *about link* is clicked the same process is repeated then the browser will replace the old homepage with the new page. So when we click on a new page the old is entirely discarded then replaced with the new from the server.
+  - `SPA (Single Page Application)` - used in react, it doesn't mean that you have only one page on your website but that the browser is only loading a single web doc one time & then the app will make incremental updates to that exisitng doc through different methods like internal react state changes or fetch requests to an API; e.g., we have a home page with a header, body and footer, when we click another page only the body is updated but the rest of the doc remains the same.
   - So when a request is made to the server then its job instead of being to process and build a html file like in MPA, it will send an entire react application so when you navigate to the about page, portions of that new page are loaded inside the react app without making new requests; other requests can be made to maybe get jSON data from an API.
 
 ##  Components provided by react-router-dom:
   - `BrowserRouter` - it is a context provider; provides context for all of its children components.
-  - `Routes` - it is the first child  in the Browser router and in it we have a series of new components called Route( a part of url that specifies where you are e.g /about). Routes can be nested e.g /blog/blog-article-1.
+  - `Routes` - it's the first child  in the Browser router and in it we have a series of new components called Route( a part of url that specifies where you are e.g /about). Routes can be nested e.g /blog/blog-article-1.
   - `Route` - self closing component that specifies the element to be displayed when a particular link is hit.
   - Others: `Link`, `NavLink`.
 
 ### Basic Setup
-
  ```jsx
       <BrowserRouter> 
-        <Routes>
-          {/* create route definition */}
-        </Routes>
+        <Routes> {/* create route definition */}</Routes>
       </BrowserRouter>
  ```
 
@@ -45,9 +42,6 @@
         
       )
     }
-
-    export default App
-
  ```
 
  ### Using Link Component
@@ -217,20 +211,9 @@ as the parent route.
 - Instead of className we can use inline style. Example below shows both.
 
 ```jsx
-  const activeStyle = {
-    fontWeight: "bold", 
-    textDecoration: "underline",
-    color: "red"
-  }
+  const activeStyle = {fontWeight: "bold", textDecoration: "underline",color: "red"}
 
-  <NavLink 
-    to="/about"
-    className={({isActive}) => isActive ? "my-link" : null }
-    style={({isActive}) => isActive ? activeStyle : null }
-  >
-      About
-  </NavLink>
-
+  <NavLink to="/about" className={({isActive}) => isActive ? "my-link" : null } style={({isActive}) => isActive ? activeStyle : null }>  About</NavLink>
   <NavLink 
     to="/contact"
     className={({isActive}) => isActive ? "my-link" : null }
@@ -523,3 +506,123 @@ export default function HomePage(){
 ```jsx
   <Route path="/" element={<HomePage/>} errorElement={<ErrorPage />}/>
 ```
+- `useRouteError` - This is a special hook that allows us to display info about the error that is catched by the errorElement
+
+- **We can make our error component more generic and put it in a parent route since any error in any child route even the most nested will bubble up to the nearest error element in the route configuration.**
+
+
+## Protected Routes
+- This is not an API in React Router but a paradigm/pattern that can be used to protect certain routes.
+- Purpose: Stop data fetching of sensitive information; only allow logged-in users to access their data.
+- Different when using old router and when using data router. Remeber when fetching with useEffect we transition to a new page then the fetch kicks off, this means we need a loading & error state; after the fetch is completed JSON is returned to the component then it is rerendered.:
+  1. How did we change our route definitions in order to "protect" certain routes from an un-logged-in user? Wrapped the routes we wanted to protect in a Layout route that contains logic to redirect someone if they're not logged in to the login page.   
+  2. What component can we use to automatically send someone to a different route in our app? <Navigate to="/login" />
+  3. What component can we render if the user IS logged in? <Outlet />
+  -  In react router, when you have nested routes that are all displaying on the page at the same time, you can end up wih a `request waterfall` where everything has to wait for the previous route to finish before the next one to start.
+    - add request waterfall image
+- While using loaders for fetching, the fetching happens before the route transition & the target component actually renders to the page. An advantage of having requests available to the router before the routes even load is that they know how to run your fetch request before even transitioning to that route. So if you have some nested route you're trying to reach, all of those fetch request can happen simultaneously; all of the loaders that are required for your current route to display correctly are run in parallel then whenever the final one of the loader finishes the entire completed page can render to the screen thus leading to faster loading and better UX.
+ - add parallel loaders image
+ - Because all of the loaders for all routes will run as soon as we start the transition to that route it means that we cant put a layout route to wrap our routes and stop the fetch request from running. Because they all start running even before it transitions into that component we no longer can try to prevent the components from rendering because the fetch requests are happening before the component is rendering anyway.
+ - Therefore the approach will be: Use of the `redirect()` function. If user isn't logged in, run redirect() to redirect to Login Page when protected route loaders run, before any route rendering happens. The downside is that it needs to happen in every protected route's loader.
+
+```jsx
+// Using Old Routers
+  // AuthRequired.jsx
+  import { Outlet, Navigate } from "react-router-dom"
+  export default function AuthRequired() {
+      const isLoggedIn = false
+      if (!isLoggedIn) return <Navigate to="/login" />
+      return <Outlet />
+  }
+  //Layout.jsx
+  import { Outlet, Link } from "react-router-dom"
+  export default function Layout() {
+    return (
+      <>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="protected">Protected</Link>
+      </nav>
+      <main><Outlet /></main> </>
+    );
+  }
+
+  //App.jsx
+  import {BrowserRouter, Routes, Route} from 'react-router-dom'
+  import Layout from "./Layout"
+  import AuthRequired from "./AuthRequired"
+
+  function App() {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+              <Route index element={<h1>Home page</h1>} />
+
+              <Route element={<AuthRequired />}>
+                <Route path="protected" element={<h1>Super secret info here</h1>} />
+              </Route>
+          </Route>        
+        </Routes>
+      </BrowserRouter>
+    )
+  }
+
+// Using data routers
+  // Layout.jsx
+  import { Outlet, Link } from "react-router-dom"
+  export default function Layout() {
+    return (
+      <>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="protected">Protected</Link>
+        <Link to="login">Login</Link>
+      </nav>
+      <main><Outlet /></main>
+      </>
+    );
+  }
+
+  //App.jsx
+  import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route, redirect} from "react-router-dom"
+  import Layout from "./Layout"
+  import AuthRequired from "./AuthRequired"
+
+  const router = createBrowserRouter(createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route
+        index
+        element={<h1>Home page</h1>}
+        loader={async () => {
+          return null
+        }}
+      />
+      <Route
+        path="protected" element={<h1>Super secret info here</h1>}
+        //loader runs before route transition ever happens
+        loader={async () => {
+          const isLoggedIn = false
+          if(!isLoggedIn){
+            throw/return redirect("/login")
+            // return redirect("/login") - can return though not common
+          }
+          return null
+        }}
+      />
+      <Route path="login" element={<h1>Login page goes here</h1>} />
+
+    </Route>
+  ))
+
+  function App() {
+    return (
+      <RouterProvider router={router} />
+    )
+  }
+```
+
+- **Parallel loaders** - when you have nested routes, the loaders of each of those nested routes will run in parallel. If we navigate to a parent with a loader then child with a loader and hit refresh sometimes the nested loader will return faster than the parent loader, it doesn't need to wait for the parent to finish before running. This clarifies why we use a different approach when using loaders to set protect routes since if both routes are making a fetch request to protected data we can see that they are both running at the same time so we can't simply have code inside the parent route that is tryning to stop the rendering of the child route beacuse the loader is happening before the rendering happens.
+
+
+6:23:25
