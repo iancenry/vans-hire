@@ -12,9 +12,10 @@ import HostVanPhotos from "./Host/HostVanPhotos"
 import HostVanPricing from "./Host/HostVanPricing"
 import NotFound from "./NotFound"
 import { loader } from "./Vans/Vans";
+import Login from "./Login";
 
 export {
   Home, About, Vans, VanDetail, Dashboard, Income, Reviews, HostVans, HostVanDetail,
   HostVanInfo, HostVanPhotos, HostVanPricing, NotFound,
-  loader
+  loader, Login
 };
