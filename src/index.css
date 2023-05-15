@@ -53,6 +53,17 @@ header a:hover {
   text-decoration: underline;
 }
 
+header .login-icon {
+  height: 16px;
+  width: 16px;
+}
+
+header .login-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+
 .link-button {
   display: inline-block;
   text-align: center;
@@ -101,6 +112,7 @@ footer {
   visibility: hidden;
 }
 
-.loader {
+.error-text {
   text-align: center;
+  margin-top: 20px;
 }
