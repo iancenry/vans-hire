@@ -214,16 +214,9 @@ as the parent route.
   const activeStyle = {fontWeight: "bold", textDecoration: "underline",color: "red"}
 
   <NavLink to="/about" className={({isActive}) => isActive ? "my-link" : null } style={({isActive}) => isActive ? activeStyle : null }>  About</NavLink>
-  <NavLink 
-    to="/contact"
-    className={({isActive}) => isActive ? "my-link" : null }
-    style={({isActive}) => isActive ? activeStyle : null }
-  >
-      Contact
-  </NavLink>
+  <NavLink to="/contact" className={({isActive}) => isActive ? "my-link" : null } style={({isActive}) => isActive ? activeStyle : null }> Contact </NavLink>
 ```
 - Use `end` with NavLink styles/classes and it tells react-router to end the matching of routes 'here'. If a more nested route matches it wont also match the 'ended' NavLink on that route.
-
 
 ## Relative Links
 - In our HostLayout.jsx when creating NavLinks we created them as abssolute paths i.e, `/host`, `/host/income` etc. However we dont need to do that because the HostLayout component is getting rendered in `<Route path="host" element={<HostLayout />}>` which is already a child of the `slash(/))` route. Because our element is part of the route for path of host the element can assume the path of host in all of its links. So in our HostLayout change the links as follows:
@@ -248,16 +241,13 @@ as the parent route.
 
 ### Going Back
 - To go back we can use the `..` relative path, the default in react router isn;t to go back exactly one route up e.g from `vans/:id` to `vans` under the host route but it is to go one level into the parent route i.e `vans/:id` to `host`. 
-- To fix this issue since we are going back to a sibling we add a `relative prop` where we can tell it to be relative to the path not the route. So that whwn we say we are going back a route it means we are going back one level back in our path structure not up a level in our routing hierarchy.
-**NB** The `..` can be thought of as how we use cd in terminal to go back a folder and we use `.` to refer to the current folder
-
+- To fix this issue since we are going back to a sibling we add a `relative prop` where we can tell it to be relative to the path not the route. So that whwn we say we are going back a route it means we are going back one level back in our path structure not up a level in our routing hierarchy. **NB** The `..` can be thought of as how we use cd in terminal to go back a folder and we use `.` to refer to the current folder
 
 ### Outlet Context
 - Outlet is just be a context provider which accepts a `context` prop and the values passed into the prop will be receivable by the other components using the `useOutletContext` hook.
 - Below I am passing in an object which will have a currentVan property whose value is the currentBan object; also written as `{currentVan: currentVan}`. The `currentVan` is paassed within curly braces more often than just passing the entire object by itself.
 ```jsx
 <Outlet context={{currentVan}} />
-
 //In the 'child' within an outlet we can access the currentVan by destructuing since currentVan is an object which has the currentVan property.
 const {currentVan} = useOutletContext()
 ```
@@ -321,14 +311,12 @@ const {currentVan} = useOutletContext()
     function genNewSearchParamString(key, value){
       //create a new set of search params using the URLSearchParams(vanilla js) constructor and initialize the new search params with the value of the old search params
       const sp = new URLSearchParams(searchParams)
-
       //use the search param methods to alter the objet we have created.
       if(value === null){
         sp.delete(key)
       }  else {
         sp.set(key, value)
-      } 
-      
+      }       
       console.log(sp.toString())
       return `?${sp.toString()}`
     }
