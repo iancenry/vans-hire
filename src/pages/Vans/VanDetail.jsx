@@ -16,7 +16,6 @@ const VanDetail = () => {
 
   return (
       <div className="van-detail-container">
-          {van ? (
               <div className="van-detail">
                   <Link to={`..${search}`} className="back-button" relative="path">&larr; <span>Back to {backText} vans</span></Link>                  
                   <img src={`/src/assets/images/${van.imageUrl}`} />
@@ -26,7 +25,6 @@ const VanDetail = () => {
                   <p>{van.description}</p>
                   <button className="link-button">Rent this van</button>
               </div>
-          ) : <h2>Loading...</h2>}
       </div>
   )
 }
