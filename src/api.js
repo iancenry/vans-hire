@@ -1,6 +1,9 @@
 // library/utility functions - has all interface with apis
-export async function getVans(){
-    const res = await fetch("/api/vans")
+
+//can take id to give one van/not and gets all vans
+export async function getVans(id){
+    const url = id ? `/api/vans/${id}` : "/api/vans"
+    const res = await fetch(url)
     if(!res.ok) {
         const errorObject = {
             message: "Failed to fetch vans",
