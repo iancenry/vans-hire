@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useSearchParams, useLoaderData } from 'react-router-dom'
 import { getVans } from '../../api'
 import Van from './Van'
@@ -9,7 +8,6 @@ export function loader(){
 
 const Vans = () => {  
     const vans = useLoaderData()
-    const [error, setError] = useState(null) 
 
     const [searchParams, setSearchParams] = useSearchParams()
     const typeFilter = searchParams.get("type")
@@ -22,11 +20,7 @@ const Vans = () => {
     ))
 
     function serverResult(){
-        if(error){
-            return <div className='error-text'> <h1>Server Error, Try Again Later. {error.message}</h1></div>
-        }else{
-            return <div className="vans">{vansArray}</div> 
-        }
+        return <div className="vans">{vansArray}</div> 
     } 
 
   return (
