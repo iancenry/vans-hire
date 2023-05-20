@@ -2,7 +2,7 @@ import { useSearchParams, useLoaderData } from 'react-router-dom'
 import { getVans } from '../../api'
 import Van from './Van'
 
-export function loader(){
+export function vansLoader(){
     return getVans()
 }
 

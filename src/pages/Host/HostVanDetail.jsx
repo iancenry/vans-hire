@@ -1,7 +1,7 @@
 import { Link,  Outlet, NavLink, useLoaderData } from "react-router-dom"
 import { getHostVans } from "../../api"
 
-export function loaderHVD({params}){
+export function hostVanDetailLoader({params}){
   return getHostVans(params.id)
 }
 
