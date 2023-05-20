@@ -1,7 +1,8 @@
 import './App.css'
 import './server'
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom'
-import { Home, About, Vans, loader as vansLoader, VanDetail, loader2 as vanDetailLoader, Dashboard, Income, Reviews, HostVans, loader3 as hostVanLoader, HostVanDetail, loaderHVD as hostVanDetailLoader, HostVanInfo, HostVanPhotos, HostVanPricing, NotFound, Login } from './pages'
+import { Home, About, Vans, vansLoader, VanDetail, vanDetailLoader, Dashboard, Income, Reviews, HostVans, hostVansLoader, HostVanDetail, hostVanDetailLoader,
+   HostVanInfo, HostVanPhotos, HostVanPricing, NotFound, Login } from './pages'
 import { Layout, HostLayout, Error } from './components'
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -16,7 +17,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route index element={<Dashboard />} loader={async() => {return null}}/>
       <Route path="income" element={<Income />} loader={async() => {return null}}/>
       <Route path="reviews" element={<Reviews />} loader={async() => {return null}}/>
-      <Route path="vans" element={<HostVans />} loader={hostVanLoader}/>
+      <Route path="vans" element={<HostVans />} loader={hostVansLoader}/>
 
       <Route path="vans/:id" element={<HostVanDetail />} loader={hostVanDetailLoader}>
         <Route index element={<HostVanInfo />} loader={async() => {return null}}/>
