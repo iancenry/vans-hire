@@ -2,7 +2,7 @@ import './App.css'
 import './server'
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom'
 import { Home, About, Vans, vansLoader, VanDetail, vanDetailLoader, Dashboard, Income, Reviews, HostVans, hostVansLoader, HostVanDetail, hostVanDetailLoader,
-   HostVanInfo, HostVanPhotos, HostVanPricing, NotFound, Login } from './pages'
+   HostVanInfo, HostVanPhotos, HostVanPricing, NotFound, Login } from './pages' 
 import { Layout, HostLayout, Error } from './components'
 
 const router = createBrowserRouter(createRoutesFromElements(
