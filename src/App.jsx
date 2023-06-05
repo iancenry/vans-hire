@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route} f
 import { Home, About, Vans, vansLoader, VanDetail, vanDetailLoader, Dashboard, Income, Reviews, HostVans, hostVansLoader, HostVanDetail, hostVanDetailLoader,
    HostVanInfo, HostVanPhotos, HostVanPricing, NotFound, Login } from './pages' 
 import { Layout, HostLayout, Error } from './components'
+import { requireAuth } from './utils'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<Layout />}>
@@ -14,15 +15,15 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='vans/:id' element={<VanDetail />} loader={vanDetailLoader} />
             
     <Route path='host' element={<HostLayout />} >
-      <Route index element={<Dashboard />} loader={async() => {return null}}/>
-      <Route path="income" element={<Income />} loader={async() => {return null}}/>
-      <Route path="reviews" element={<Reviews />} loader={async() => {return null}}/>
+      <Route index element={<Dashboard />} loader={async() => await requireAuth()}/>
+      <Route path="income" element={<Income />} loader={async() => await requireAuth()}/>
+      <Route path="reviews" element={<Reviews />} loader={async() => await requireAuth()}/>
       <Route path="vans" element={<HostVans />} loader={hostVansLoader}/>
 
       <Route path="vans/:id" element={<HostVanDetail />} loader={hostVanDetailLoader}>
-        <Route index element={<HostVanInfo />} loader={async() => {return null}}/>
-        <Route path="pricing" element={<HostVanPricing />} loader={async() => {return null}}/>
-        <Route path="photos" element={<HostVanPhotos />} loader={async() => {return null}}/>
+        <Route index element={<HostVanInfo />} loader={async() => await requireAuth()}/>
+        <Route path="pricing" element={<HostVanPricing />} loader={async() => await requireAuth()}/>
+        <Route path="photos" element={<HostVanPhotos />} loader={async() => await requireAuth()}/>
       </Route>
     </Route>
     <Route path="*" element={<NotFound />} />

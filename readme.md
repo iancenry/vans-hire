@@ -89,7 +89,10 @@
 
 ```jsx
   const params = useParams()
-  params.urlParamName;
+  params.urlParamName;  //params.id
+
+  //or - extract param needed
+  const {id} = useParams()
 ```
 
 ### Nested Routes 
@@ -404,6 +407,7 @@ const {currentVan} = useOutletContext()
     1. Export a `loader function` from the page that fetches the data that page will need. Happens in Vans component.
     2. Pass a `loader prop` to the Route that renders that page and pass in the loader function. Happens in App.jsx
     3. Use the `useLoaderData` hook in the component to get the data. Happens in Vans component.
+- since a loader is not a component we can not use useParams hook but we have immediate access as one of its parameters an object called `params`. `function loader({params}){}`
 
 ### createBrowserRouter
 - Before we can take advantage of any of the data layer APIs we need to change the way we create our router. We need to create our BrowserRouter in a different way using createBrowserRouter function.
@@ -611,6 +615,8 @@ export default function HomePage(){
 ```
 
 - **Parallel loaders** - when you have nested routes, the loaders of each of those nested routes will run in parallel. If we navigate to a parent with a loader then child with a loader and hit refresh sometimes the nested loader will return faster than the parent loader, it doesn't need to wait for the parent to finish before running. This clarifies why we use a different approach when using loaders to set protect routes since if both routes are making a fetch request to protected data we can see that they are both running at the same time so we can't simply have code inside the parent route that is tryning to stop the rendering of the child route beacuse the loader is happening before the rendering happens.
+`Downside: With protected routes, you have to include a loader with in every protected route in order to protoect all the routes because they will always run in parallel`
 
+- Even though in `App.jsx` we have repetition it is good that loaders will run before  route transitions thus giving a more synchronous feel, we no longer need to remember about render cycles and what will cause or not cause a rerender in our componenet then having to set up error and loading state which were just things that are about managing the react render cycle and not about managing our actual data; loaders are better than wrapping everyhting with an Auth component and soon there might be a middleware solution to the repetition of loaders in all protected routes.
 
-6:23:25
+6:43:38

@@ -1,7 +1,9 @@
 import { Link,  Outlet, NavLink, useLoaderData } from "react-router-dom"
 import { getHostVans } from "../../api"
+import  { requireAuth } from "../../utils"
 
-export function hostVanDetailLoader({params}){
+export async function hostVanDetailLoader({params}){
+  await requireAuth()
   return getHostVans(params.id)
 }
 
