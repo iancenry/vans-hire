@@ -523,7 +523,7 @@ export default function HomePage(){
   import { Outlet, Navigate } from "react-router-dom"
   export default function AuthRequired() {
       const isLoggedIn = false
-      if (!isLoggedIn) return <Navigate to="/login" />
+      if (!isLoggedIn) return <Navigate to="/login" state={{message: "You must log in first"}} />
       return <Outlet />
   }
   //Layout.jsx
@@ -618,5 +618,22 @@ export default function HomePage(){
 `Downside: With protected routes, you have to include a loader with in every protected route in order to protoect all the routes because they will always run in parallel`
 
 - Even though in `App.jsx` we have repetition it is good that loaders will run before  route transitions thus giving a more synchronous feel, we no longer need to remember about render cycles and what will cause or not cause a rerender in our componenet then having to set up error and loading state which were just things that are about managing the react render cycle and not about managing our actual data; loaders are better than wrapping everyhting with an Auth component and soon there might be a middleware solution to the repetition of loaders in all protected routes.
+- we can include a message prompt using search params i.e,
 
-6:43:38
+```jsx
+  import { redirect } from "react-router-dom";
+
+  export async function requireAuth(){
+      const isLoggedIn = false;
+
+      if(!isLoggedIn) {
+          return redirect("/login?message=You must log in first")
+      }
+  }
+```
+ - To access the message we can use useSearchParams() but to dive deeper into loaders we can use a loader function in the login page component and destructure the request object it automatically receives (just like the `params`). `Check MDN for ref on the request object since it is from the web and not specific to react router`.
+ ```jsx
+  function loginLoader({request}){
+    return new URL(request.url).searchParam.get("message")
+  }
+ ```
