@@ -520,6 +520,11 @@
   margin-top: 22px;
   color: white;
   font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+
+.login-form > button:disabled{
+  background-color: red;
 }
 
 .login-form > button:disabled {
