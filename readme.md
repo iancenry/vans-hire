@@ -637,3 +637,11 @@ export default function HomePage(){
     return new URL(request.url).searchParam.get("message")
   }
  ```
+
+
+## Form and Actions
+- Forms are bad in react but they can be made better using `actions` in react router. In react we try to build a system over the top of the native input form elements to bypass the state management that already happens natively internally by forms and forces react to maintain all the infromation; so we have to create our own state that manages every piece of data that we are trying to maintain, create a handleChange function and then control the value by telling it that that value is what is being held in state and all this is on top of what is happening internally.
+- `Actions` make forms easier to work with.
+
+```jsx
+```
