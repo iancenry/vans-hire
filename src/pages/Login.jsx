@@ -9,6 +9,8 @@ export function loginLoader({request}){
 const Login = () => {
     const [loginFormData, setLoginFormData] = useState({email : "", password: ""})
     const [status, setStatus] = useState("idle")
+    console.log(status)
+
     const [error, setError] = useState(null)
     const message = useLoaderData()
 
@@ -24,8 +26,11 @@ const Login = () => {
         loginUser(loginFormData)
             .then(res => console.log(res))
             .catch(err => setError(err.message))
+            .finally(() => {
+                setStatus("idle") 
+            })
 
-        setStatus("idle")   
+          
         setError(null)    
     }
 
@@ -37,7 +42,7 @@ const Login = () => {
             <form onSubmit={handleSubmit} className="login-form">
                 <input type="email" name="email" onChange={handleChange} value={loginFormData.email} placeholder="Email Address" />
                 <input type="password" name="password" onChange={handleChange} value={loginFormData.password} placeholder="Password" />
-                <button className="login-btn" disabled={status === "submitting" ? true : false}>Log In</button>
+                <button className="login-btn" disabled={status === "submitting"}>Log In</button>
             </form>
         </div>
     )
