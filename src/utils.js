@@ -5,7 +5,7 @@ export async function requireAuth(){
 
     if(!isLoggedIn) {
         // return redirect("/login") - OG line below is due to mirage js not working well with latest react
-        const response  = redirect("/login") 
+        const response  = redirect("/login?msg=You must log in first") 
         response.body = true
         throw response
     }
