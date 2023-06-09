@@ -669,6 +669,7 @@ const Login = () => {
 ```
 - To use the `action` function we need to import `Form` component which is built on top of the native html form so we dont need to do `handleChange/handleSubmit`, we also dont need to control the value or have an onChange property to inputs. With this we dont need to learn how to handle forms with react but we can just read about forms in MDN.
 - Where a form would submit to some backend, in react router our `Form` will run a function we define, the function will look like a loader function but its name will be `action(can have any name)` then in the route we pass a prop called action and pass that imported action. So if we have anything that submits a form from our component in that route, it will automatically call the function that we passed to the action prop on that route. Rember to add the `method` attribute to the Form component.
+- The action function implicitly receives an object with 2 properties: request and params; these are also in loaders. The params property refers to route parameters so if our route was `login/:id`, we could grab the id param from aour action function. The request portion of the object can be used to access the form data with `request.formData` which is an async function and the formData is native so refer to MDN. We can then use `.get()` to access some piece of inputed data using the name property of the input field.
 
 ```jsx
 ```
