@@ -10,7 +10,6 @@
   - `BrowserRouter` - it is a context provider; provides context for all of its children components.
   - `Routes` - it's the first child  in the Browser router and in it we have a series of new components called Route( a part of url that specifies where you are e.g /about). Routes can be nested e.g /blog/blog-article-1.
   - `Route` - self closing component that specifies the element to be displayed when a particular link is hit.
-  - Others: `Link`, `NavLink`.
 
 ### Basic Setup
  ```jsx
@@ -22,14 +21,8 @@
  ### Creating a route(s)
  ```jsx
     import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
-    const Homepage = () => (
-      <h1>Homepage</h1>
-    )
-
-    const Aboutpage = () => (
-      <h1>About Page</h1>
-    )
+    const Homepage = () => ( <h1>Homepage</h1>)
+    const Aboutpage = () => (<h1>About Page</h1>)
 
     function App() {
       return (
@@ -38,8 +31,7 @@
               <Route path='/' element={<Homepage />} />
               <Route path='/about' element={<Aboutpage />} />
             </Routes>
-          </Router>
-        
+          </Router>        
       )
     }
  ```
@@ -49,18 +41,10 @@
 
  ```jsx
     import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-
     const Homepage = () => (
       <>
         <h1>Homepage</h1>
         <Link to='/about'>About</Link>
-      </>
-    )
-
-    const Aboutpage = () => (
-      <>
-        <h1>About Page</h1>
-        <Link to='/'>Home</Link>
       </>
     )
  ```
@@ -70,14 +54,11 @@
  - Steps: 
   1. Push project to Github
   2. Tell Netlify which repo you want to deploy
-  3. In site setting; needed since we deploy without building first: 
-    - Build command input  - `npm run build`
-    - Publish directory input  - `dist`
-
+  3. In site setting; needed since we deploy without building first: (1) Build command input  - `npm run build` then (2) Publish directory input  - `dist`
 
 ### Mirage JS
 - Mirage JS - npm package to create mock server that will intercept any API requests and will return data from the mock server instead of having to worry about reaching out to the real world.
-   - thin of the routes() portion as the server code that would run whenever you make a request to `/vans` or to `/vans/:id`
+   - think of the routes() portion as the server code that would run whenever you make a request to `/vans` or to `/vans/:id`
 
 ### Dynamic Route(:/name)
 - Route/url parameter - a portion of our route that is a placeholder for what will eventualy be the actual segment in the URL of the page. Help us create dynamic routes. Example of a route parameter called `productId` in a Route path:
@@ -90,7 +71,6 @@
 ```jsx
   const params = useParams()
   params.urlParamName;  //params.id
-
   //or - extract param needed
   const {id} = useParams()
 ```
@@ -171,9 +151,7 @@ When talking about nested routes we are talking about:
           <Route path="vans/:id" element={<VanDetail />} />
           
           <Route path="host" element={<HostLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="income" element={<Income />} />
-            <Route path="reviews" element={<Reviews />} />
+            {...}
           </Route>
         </Route>
       </Routes>
@@ -187,9 +165,7 @@ When talking about nested routes we are talking about:
           <Route path="vans/:id" element={<VanDetail />} />
           
           <Route path="host" element={<HostLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="income" element={<Income />} />
-            <Route path="reviews" element={<Reviews />} />
+            {...}
           </Route>
         </Route>
       </Routes>      
@@ -215,9 +191,7 @@ as the parent route.
 
 ```jsx
   const activeStyle = {fontWeight: "bold", textDecoration: "underline",color: "red"}
-
   <NavLink to="/about" className={({isActive}) => isActive ? "my-link" : null } style={({isActive}) => isActive ? activeStyle : null }>  About</NavLink>
-  <NavLink to="/contact" className={({isActive}) => isActive ? "my-link" : null } style={({isActive}) => isActive ? activeStyle : null }> Contact </NavLink>
 ```
 - Use `end` with NavLink styles/classes and it tells react-router to end the matching of routes 'here'. If a more nested route matches it wont also match the 'ended' NavLink on that route.
 
@@ -228,14 +202,12 @@ as the parent route.
     <NavLink to="/host" end style={({isActive}) => isActive ? activeStyles : null}>Dashboard</NavLink>
     <NavLink to="/host/income" style={({isActive}) => isActive ? activeStyles : null}>Income</NavLink>
     <NavLink to="/host/vans" style={({isActive}) => isActive ? activeStyles : null}>Vans</NavLink>
-    <NavLink to="/host/reviews" style={({isActive}) => isActive ? activeStyles : null}>reviews</NavLink>
 
     //relative links
     //the dot(.) mean is i want the dashboard to link me to the current route where the host layout is being rendered; the host layout is being rendered on the path of 'host' 
     <NavLink to="." end style={({isActive}) => isActive ? activeStyles : null}>Dashboard</NavLink>
     <NavLink to="income" style={({isActive}) => isActive ? activeStyles : null}>Income</NavLink>
     <NavLink to="vans" style={({isActive}) => isActive ? activeStyles : null}>Vans</NavLink>
-    <NavLink to="reviews" style={({isActive}) => isActive ? activeStyles : null}>reviews</NavLink>
 ```
 
 - So if we had links inside the income component `<Route path="income" element={<Income />} />` we wouldn't need to specify the whole path leading upto income.
@@ -641,7 +613,64 @@ export default function HomePage(){
 
 ## Form and Actions
 - Forms are bad in react but they can be made better using `actions` in react router. In react we try to build a system over the top of the native input form elements to bypass the state management that already happens natively internally by forms and forces react to maintain all the infromation; so we have to create our own state that manages every piece of data that we are trying to maintain, create a handleChange function and then control the value by telling it that that value is what is being held in state and all this is on top of what is happening internally.
-- `Actions` make forms easier to work with.
+- `Actions` make forms easier to work with. Natively, forms can submit to some backend using the action attribute that maybe directs to a php file that deals with the data `<form action="login.php" method="POST">`. With this we can see where the action function comes from. Instead of submitting to a backend, react router gives us a component that allows us to intercept the outgoing request that would normally happen with a native form and process it on the frontend instead.
+
+```jsx
+// Before using actions
+import { useLoaderData, useNavigate } from "react-router-dom"
+import { loginUser } from '../api'
+
+export function loginLoader({request}){
+    return new URL(request.url).searchParams.get('msg')
+}
+
+const Login = () => {
+    const [loginFormData, setLoginFormData] = useState({email : "", password: ""})
+    const [status, setStatus] = useState("idle")
+    const [error, setError] = useState(null)
+    const message = useLoaderData()
+    //we can use the useNavigate hook which is a function version of the Navigate component to navigate to a new route 
+    const navigate = useNavigate()
+
+    function handleChange(e){
+        const {name, value} = e.target;
+        setLoginFormData(prevData => ({...prevData, [name] : value}))
+    }
+
+    function handleSubmit(e){
+        e.preventDefault()
+        setStatus("submitting")
+        setError(null) 
+        //the res/user object returned will be typically saved somewhere eg in a cookie/context/session storage so that you can display the user's name somewhere in the app
+        loginUser(loginFormData)
+            .then(res => {
+                //the replace option is optional, it replaces my location in the history stack with what used to be there; if i hit back it goes to the page i was before i hit the protected route/went to the login page
+                //the difference between useNavigate and redirect is that useNavigate being a hook can only run in the top level of components so we cant use it within loaders/actions
+                //useNavigate shoulf be used with useEffect to avoid bugs that might occur; research further
+                navigate("/host", {replace : true})
+            })
+            .catch(err => setError(err))
+            .finally(() => setStatus("idle") )                    
+    }
+
+    return (
+        <div className="login-container">
+            <h1>Sign In</h1>
+            {error && <h3 className="red">{error.message}</h3>}
+            {message && <h3 className="red">{message}</h3>}
+            <form onSubmit={handleSubmit} className="login-form">
+                <input type="email" name="email" onChange={handleChange} value={loginFormData.email} placeholder="Email Address" />
+                <input type="password" name="password" onChange={handleChange} value={loginFormData.password} placeholder="Password" />
+                <button className="login-btn" disabled={status === "submitting"}>{status === "submitting" ? "Logging In..." : "Log In"}</button>
+            </form>
+        </div>
+    )
+}
+```
+- To use the `action` function we need to import `Form` component which is built on top of the native html form so we dont need to do `handleChange/handleSubmit`, we also dont need to control the value or have an onChange property to inputs. With this we dont need to learn how to handle forms with react but we can just read about forms in MDN.
+- Where a form would submit to some backend, in react router our `Form` will run a function we define, the function will look like a loader function but its name will be `action(can have any name)` then in the route we pass a prop called action and pass that imported action. So if we have anything that submits a form from our component in that route, it will automatically call the function that we passed to the action prop on that route. Rember to add the `method` attribute to the Form component.
 
 ```jsx
 ```
+
+7:20:35
