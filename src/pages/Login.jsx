@@ -6,8 +6,11 @@ export function loginLoader({request}){
     return new URL(request.url).searchParams.get('msg')
 }
 
-export function action(){
-    console.log("yellow")
+export async function action({ request }){
+    const formData = request.formData()
+    const email = formData.get('email')
+    const password = formData.get("password")
+    //precess the info and passto loginUser function
     return null
 }
 
@@ -17,7 +20,6 @@ const Login = () => {
     const message = useLoaderData()
     //we can use the useNavigate hook which is a function version of the Navigate component to navigate to a new route 
     const navigate = useNavigate()
-
 
     function handleSubmit(e){
         e.preventDefault()
