@@ -16,10 +16,10 @@ import { vanDetailLoader } from "./Vans/VanDetail";
 import { hostVansLoader } from "./Host/HostVans";
 import { hostVanDetailLoader } from "./Host/HostVanDetail";
 import Login from "./Login";
-import { loginLoader } from "./Login";
+import { loginLoader, action } from "./Login";
 
 export {
   Home, About, Vans, VanDetail, Dashboard, Income, Reviews, HostVans, HostVanDetail,
   HostVanInfo, HostVanPhotos, HostVanPricing, NotFound,
-  vansLoader, vanDetailLoader, hostVansLoader, hostVanDetailLoader, Login ,loginLoader
+  vansLoader, vanDetailLoader, hostVansLoader, hostVanDetailLoader, Login ,loginLoader, action
 };

@@ -1,49 +1,48 @@
 import { useState } from "react"
-import { useLoaderData } from "react-router-dom"
+import { Form, useLoaderData, useNavigate } from "react-router-dom"
 import { loginUser } from '../api'
 
 export function loginLoader({request}){
     return new URL(request.url).searchParams.get('msg')
 }
 
-const Login = () => {
-    const [loginFormData, setLoginFormData] = useState({email : "", password: ""})
-    const [status, setStatus] = useState("idle")
-    console.log(status)
+export function action(){
+    console.log("yellow")
+    return null
+}
 
+const Login = () => {
+    const [status, setStatus] = useState("idle")
     const [error, setError] = useState(null)
     const message = useLoaderData()
+    //we can use the useNavigate hook which is a function version of the Navigate component to navigate to a new route 
+    const navigate = useNavigate()
 
-    function handleChange(e){
-        const {name, value} = e.target;
-        setLoginFormData(prevData => ({...prevData, [name] : value}))
-    }
 
     function handleSubmit(e){
         e.preventDefault()
         setStatus("submitting")
-        //the res/user object returned will be typically saved somewhere eg in a cookie/context/session storage so that you can display the user's name somewhere in the app
+        setError(null) 
         loginUser(loginFormData)
-            .then(res => console.log(res))
-            .catch(err => setError(err.message))
+            .then(res => {
+                navigate("/host", {replace : true})
+            })
+            .catch(err => setError(err))
             .finally(() => {
                 setStatus("idle") 
-            })
-
-          
-        setError(null)    
+            })                    
     }
 
     return (
         <div className="login-container">
             <h1>Sign In</h1>
-            {error && <h2 className="red">{error}</h2>}
+            {error && <h3 className="red">{error.message}</h3>}
             {message && <h3 className="red">{message}</h3>}
-            <form onSubmit={handleSubmit} className="login-form">
-                <input type="email" name="email" onChange={handleChange} value={loginFormData.email} placeholder="Email Address" />
-                <input type="password" name="password" onChange={handleChange} value={loginFormData.password} placeholder="Password" />
-                <button className="login-btn" disabled={status === "submitting"}>Log In</button>
-            </form>
+            <Form method="post"  className="login-form">
+                <input type="email" name="email" placeholder="Email Address" />
+                <input type="password" name="password"placeholder="Password" />
+                <button className="login-btn" disabled={status === "submitting"}>{status === "submitting" ? "Logging In..." : "Log In"}</button>
+            </Form>
         </div>
     )
 }

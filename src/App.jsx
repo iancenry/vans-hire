@@ -2,14 +2,14 @@ import './App.css'
 import './server'
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom'
 import { Home, About, Vans, vansLoader, VanDetail, vanDetailLoader, Dashboard, Income, Reviews, HostVans, hostVansLoader, HostVanDetail, hostVanDetailLoader,
-   HostVanInfo, HostVanPhotos, HostVanPricing, NotFound, Login, loginLoader } from './pages' 
+   HostVanInfo, HostVanPhotos, HostVanPricing, NotFound, Login, loginLoader, action as loginAction } from './pages' 
 import { Layout, HostLayout, Error } from './components'
 import { requireAuth } from './utils'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<Layout />}>
     <Route path='/' element={<Home />} />
-    <Route path="login" element={<Login/>} loader={loginLoader} />
+    <Route path="login" element={<Login/>} loader={loginLoader} action={loginAction} />
     <Route path='about' element={<About />} />
     <Route path='vans' element={<Vans />} loader={vansLoader} errorElement={<Error />}/>
     <Route path='vans/:id' element={<VanDetail />} loader={vanDetailLoader} />
