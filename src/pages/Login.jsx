@@ -7,10 +7,11 @@ export function loginLoader({request}){
 }
 
 export async function action({ request }){
-    const formData = request.formData()
+    const formData = await request.formData()
     const email = formData.get('email')
     const password = formData.get("password")
     //precess the info and passto loginUser function
+    console.log(email, password)
     return null
 }
 
