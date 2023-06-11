@@ -672,6 +672,7 @@ const Login = () => {
 - The action function implicitly receives an object with 2 properties: request and params; these are also in loaders. The params property refers to route parameters so if our route was `login/:id`, we could grab the id param from aour action function. The request portion of the object can be used to access the form data with `request.formData` which is an async function and the formData is native so refer to MDN. We can then use `.get()` to access some piece of inputed data using the name property of the input field.
 
 ```jsx
+
 ```
 
 7:34:22
