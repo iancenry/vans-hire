@@ -3,29 +3,29 @@ import { Form, useLoaderData, redirect } from "react-router-dom"
 import { loginUser } from '../api'
 
 export function loginLoader({request}){
+    // since loaders always run before route transitions, we check if user already logged in to prevent access to login page and redirect to /host
+    if(localStorage.getItem('loggedIn')) return redirect('/host')
+    // pull message from url search parameter
     return new URL(request.url).searchParams.get('msg')
 }
 
 export async function action({ request }){
+    // get data from Form component
     const formData = await request.formData()
     const email = formData.get('email')
     const password = formData.get("password")
     try {
+        // send data and await response from server api
         const data = await loginUser({email, password})
         localStorage.setItem('loggedIn', true)
         return redirect("/host")
     } catch (error) {
         console.log(error) 
         return redirect("/login")       
-    }
-    
-    
-    
-    
+    }    
 }
 
 const Login = () => {
-    const [status, setStatus] = useState("idle")
     const [error, setError] = useState(null)
     const message = useLoaderData()
 
