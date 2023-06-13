@@ -13,8 +13,6 @@ export async function action({ request }){
     try {
         const data = await loginUser({email, password})
         localStorage.setItem('loggedIn', true)
-        //using since the redirect now working for some reason
-        // return new Response("", {status: 302, headers: {Location: '/host'}})
         return redirect("/host")
     } catch (error) {
         console.log(error) 
