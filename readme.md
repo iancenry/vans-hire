@@ -671,9 +671,15 @@ const Login = () => {
 - Where a form would submit to some backend, in react router our `Form` will run a function we define, the function will look like a loader function but its name will be `action(can have any name)` then in the route we pass a prop called action and pass that imported action. So if we have anything that submits a form from our component in that route, it will automatically call the function that we passed to the action prop on that route. Rember to add the `method` attribute to the Form component.
 - The action function implicitly receives an object with 2 properties: request and params; these are also in loaders. The params property refers to route parameters so if our route was `login/:id`, we could grab the id param from aour action function. The request portion of the object can be used to access the form data with `request.formData` which is an async function and the formData is native so refer to MDN. We can then use `.get()` to access some piece of inputed data using the name property of the input field.
 
+
+### History Stack
+- We will look at how we can prevent the back button from taking us back to login page after login.
+- The browser maintains an array of the locations the browser has visited in the `history stack`. Moving to another link pushes that route/url to the stack and pressing the back button pops the current url off the stack.
+
+
 ```jsx
+// With actions
 
 
 ```
-
 7:34:22
