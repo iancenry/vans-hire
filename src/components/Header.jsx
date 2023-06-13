@@ -4,7 +4,7 @@ import avatarIcon from "/src/assets/images/avatar-icon.png"
 const Header = () => {
 
   function fakeLogOut() {
-    localStorage.removeItem("loggedin")
+    localStorage.removeItem("loggedIn")
   }
 
   return (
