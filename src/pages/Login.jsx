@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Form, useLoaderData, useNavigate } from "react-router-dom"
+import { Form, useLoaderData, redirect } from "react-router-dom"
 import { loginUser } from '../api'
 
 export function loginLoader({request}){
@@ -10,31 +10,26 @@ export async function action({ request }){
     const formData = await request.formData()
     const email = formData.get('email')
     const password = formData.get("password")
-    //precess the info and passto loginUser function
-    console.log(email, password)
-    return null
+    try {
+        const data = await loginUser({email, password})
+        localStorage.setItem('loggedIn', true)
+        //using since the redirect now working for some reason
+        // return new Response("", {status: 302, headers: {Location: '/host'}})
+        return redirect("/host")
+    } catch (error) {
+        console.log(error) 
+        return redirect("/login")       
+    }
+    
+    
+    
+    
 }
 
 const Login = () => {
     const [status, setStatus] = useState("idle")
     const [error, setError] = useState(null)
     const message = useLoaderData()
-    //we can use the useNavigate hook which is a function version of the Navigate component to navigate to a new route 
-    const navigate = useNavigate()
-
-    function handleSubmit(e){
-        e.preventDefault()
-        setStatus("submitting")
-        setError(null) 
-        loginUser(loginFormData)
-            .then(res => {
-                navigate("/host", {replace : true})
-            })
-            .catch(err => setError(err))
-            .finally(() => {
-                setStatus("idle") 
-            })                    
-    }
 
     return (
         <div className="login-container">
