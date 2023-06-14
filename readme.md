@@ -671,15 +671,31 @@ const Login = () => {
 - Where a form would submit to some backend, in react router our `Form` will run a function we define, the function will look like a loader function but its name will be `action(can have any name)` then in the route we pass a prop called action and pass that imported action. So if we have anything that submits a form from our component in that route, it will automatically call the function that we passed to the action prop on that route. Rember to add the `method` attribute to the Form component.
 - The action function implicitly receives an object with 2 properties: request and params; these are also in loaders. The params property refers to route parameters so if our route was `login/:id`, we could grab the id param from aour action function. The request portion of the object can be used to access the form data with `request.formData` which is an async function and the formData is native so refer to MDN. We can then use `.get()` to access some piece of inputed data using the name property of the input field.
 
-
-### History Stack
-- We will look at how we can prevent the back button from taking us back to login page after login.
-- The browser maintains an array of the locations the browser has visited in the `history stack`. Moving to another link pushes that route/url to the stack and pressing the back button pops the current url off the stack.
-
-
 ```jsx
 // With actions
 
 
 ```
-7:34:22
+
+
+### History Stack
+- We will look at how we can prevent the back button from taking us back to login page after login.
+- The browser maintains an array of the locations the browser has visited in the `history stack`. Moving to another link pushes that route/url to the stack and pressing the back button pops the current url off the stack.
+- In `Login.jsx` instead of doing this to check if user is already logged in: 
+```jsx
+  export function loginLoader({request}){
+      //Best approach-  since loaders always run before route transitions, we check if user already logged in to prevent access to login page and redirect to /host
+      if(localStorage.getItem('loggedIn')) return redirect('/host')
+      // pull message from url search parameter
+      return new URL(request.url).searchParams.get('msg')
+  }
+```
+- We can add `replace` prop to the Form component; since the submission of a form is considered a navigation event, similar to how we have `replace: true` in the useNavigate the same thing will happen to our Form. So we can replace the current entry in the history stack with the upcoming entry. So we can remove the `/login` from the history stack and we have an ammended histoy stack where on pressing the back button, the logged in user will go the route the user was in before the login page instead of the login page.
+
+```jsx
+  // removes the need for - if(localStorage.getItem('loggedIn')) return redirect('/host')
+ <Form method="post"  className="login-form" replace>
+  </Form>
+```
+
+7:49:23
