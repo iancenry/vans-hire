@@ -745,5 +745,9 @@ const Login = () => {
 - Gives us an object with info on the current status of navigation in our ap ie for example if react router is in the process of loading in a loader/ submitting a form that navigation object can give us info about that.
 
 ## Deferring Data
+- Since loaders do the fetching before the component renders there is a bit of a pause before we switch to the next route such that the UX feels bad/laggy adding on it the lack of a loading state which isn't needed with loaders. We can use deferred data to bring back the UX that when a link is clicked, we transiton to the route immediately then we get an API to render some kind of loading state
+
+### Promises and defer()
+
 
 
