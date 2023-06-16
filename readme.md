@@ -472,7 +472,7 @@ export default function HomePage(){
 ```
 - `useRouteError` - This is a special hook that allows us to display info about the error that is catched by the errorElement
 
-- **We can make our error component more generic and put it in a parent route since any error in any child route even the most nested will bubble up to the nearest error element in the route configuration.**
+- **We can make our error component more generic and put it in a parent route since any error in any child route even the most nested will bubble up to the nearest error element in the route configuration. When an error is thrown inside an action, loader or component it will exit out of the regualar element flow of our route definitions and it will look for the nearest error element.**
 
 
 ## Protected Routes
@@ -698,4 +698,7 @@ const Login = () => {
   </Form>
 ```
 
-7:49:23
+### useActionData
+- In order to grab data that is returned from an action function we use the useActionData hook.
+
+
