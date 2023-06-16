@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Form, useLoaderData, redirect } from "react-router-dom"
+import { Form, useLoaderData, redirect, useActionData } from "react-router-dom"
 import { loginUser } from '../api'
 
 export function loginLoader({request}){
@@ -20,19 +20,18 @@ export async function action({ request }){
         localStorage.setItem('loggedIn', true)
         return redirect("/host")
     } catch (error) {
-        console.log(error) 
-        return redirect("/login")       
+        return error.message 
     }    
 }
 
 const Login = () => {
-    const [error, setError] = useState(null)
+    const errorMessage = useActionData()
     const message = useLoaderData()
 
     return (
         <div className="login-container">
             <h1>Sign In</h1>
-            {error && <h3 className="red">{error.message}</h3>}
+            {errorMessage && <h3 className="red">{errorMessage}</h3>}
             {message && <h3 className="red">{message}</h3>}
             <Form method="post"  className="login-form">
                 <input type="email" name="email" placeholder="Email Address" />
