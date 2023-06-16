@@ -748,6 +748,8 @@ const Login = () => {
 - Since loaders do the fetching before the component renders there is a bit of a pause before we switch to the next route such that the UX feels bad/laggy adding on it the lack of a loading state which isn't needed with loaders. We can use deferred data to bring back the UX that when a link is clicked, we transiton to the route immediately then we get an API to render some kind of loading state
 
 ### Promises and defer()
-
+- Remember: async functions always return a promise. When we use await we mean that "wait" until something is done before proceeding.
+- In order to bring back the benefits of switching to a route immeaediately before kicking off the request in our loader function we need to use a utility from RRD called `defer`. The process we use starts with react router knowing that its loader function is allowed to wait or defer the loading of data to a later point and therefore will not block the UI from loading or specifically the component from being rendered before the data is completely gathered.
+- In the loader we remove `await` keyword from the function that is called to fetch the data thus making the variable it's assigned to not the actual resolved data but a promise object. 
 
 
