@@ -10,7 +10,7 @@ export async function action({ request }){
     const formData = await request.formData()
     const email = formData.get('email')
     const password = formData.get("password")
-    // get url that directed user to login page
+    // get url that directed user to login page; default to host route
     const previousPathname = new URL(request.url).searchParams.get("redirectTo") || "/host"
 
     try {
