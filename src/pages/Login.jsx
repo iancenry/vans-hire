@@ -10,10 +10,13 @@ export async function action({ request }){
     const formData = await request.formData()
     const email = formData.get('email')
     const password = formData.get("password")
+    // get url that directed user to login page
+    const previousPathname = new URL(request.url).searchParams.get("redirectTo") || "/host"
+
     try {
         const data = await loginUser({email, password})
         localStorage.setItem('loggedIn', true)
-        return redirect("/host")
+        return redirect(previousPathname)
     } catch (error) {
         return error.message 
     }    
