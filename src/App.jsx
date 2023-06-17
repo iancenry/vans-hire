@@ -1,7 +1,7 @@
 import './App.css'
 import './server'
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom'
-import { Home, About, Vans, vansLoader, VanDetail, vanDetailLoader, Dashboard, Income, Reviews, HostVans, hostVansLoader, HostVanDetail, hostVanDetailLoader,
+import { Home, About, Vans, vansLoader, VanDetail, vanDetailLoader, Dashboard,dashboardLoader , Income, Reviews, HostVans, hostVansLoader, HostVanDetail, hostVanDetailLoader,
    HostVanInfo, HostVanPhotos, HostVanPricing, NotFound, Login, loginLoader, action as loginAction } from './pages' 
 import { Layout, HostLayout, Error } from './components'
 import { requireAuth } from './utils'
@@ -15,7 +15,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='vans/:id' element={<VanDetail />} loader={vanDetailLoader} errorElement={<Error />} />
             
     <Route path='host' element={<HostLayout />} >
-      <Route index element={<Dashboard />} loader={async({request}) => await requireAuth(request)}/>
+      <Route index element={<Dashboard />} loader={dashboardLoader}/>
       <Route path="income" element={<Income />} loader={async({request}) => await requireAuth(request)}/>
       <Route path="reviews" element={<Reviews />} loader={async({request}) => await requireAuth(request)}/>
       <Route path="vans" element={<HostVans />} loader={hostVansLoader} errorElement={<Error />}/>

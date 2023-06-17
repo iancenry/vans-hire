@@ -3,6 +3,7 @@ import About from "./About";
 import Vans from "./Vans/Vans";
 import VanDetail from "./Vans/VanDetail";
 import Dashboard from "./Host/Dashboard"
+import { dashboardLoader } from "./Host/Dashboard";
 import Income from "./Host/Income"
 import Reviews from "./Host/Reviews"
 import HostVans from "./Host/HostVans";
@@ -19,7 +20,7 @@ import Login from "./Login";
 import { loginLoader, action } from "./Login";
 
 export {
-  Home, About, Vans, VanDetail, Dashboard, Income, Reviews, HostVans, HostVanDetail,
+  Home, About, Vans, VanDetail, Dashboard, dashboardLoader, Income, Reviews, HostVans, HostVanDetail,
   HostVanInfo, HostVanPhotos, HostVanPricing, NotFound,
   vansLoader, vanDetailLoader, hostVansLoader, hostVanDetailLoader, Login ,loginLoader, action
 };
