@@ -30,9 +30,7 @@ const HostVans = () => {
        <section>{hostVansEls}</section>
      </div>              
    )
- }
-
- 
+ } 
 
   return (
     <section>

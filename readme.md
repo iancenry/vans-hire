@@ -763,6 +763,7 @@ export async function loader(){
 import {defer} from 'react-router-dom'
 export async function loader(){
   const weatherPromise = getWeather()
+  //defeer the data to after route transition happens
   return defer({weather  : weatherPromise})
 
   /* Shorthand
