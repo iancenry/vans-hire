@@ -750,6 +750,41 @@ const Login = () => {
 ### Promises and defer()
 - Remember: async functions always return a promise. When we use await we mean that "wait" until something is done before proceeding.
 - In order to bring back the benefits of switching to a route immeaediately before kicking off the request in our loader function we need to use a utility from RRD called `defer`. The process we use starts with react router knowing that its loader function is allowed to wait or defer the loading of data to a later point and therefore will not block the UI from loading or specifically the component from being rendered before the data is completely gathered.
-- In the loader we remove `await` keyword from the function that is called to fetch the data thus making the variable it's assigned to not the actual resolved data but a promise object. 
+- In the loader we remove `await` keyword from the function that is called to fetch the data thus making the variable it's assigned to not the actual resolved data but a promise object. We then return a `defer()` call which expects an object and the `key` of the object is the data that will eventually get resolved whenever the promise gets resolved and the `value` will be the promise that eventually needs to get resolved and become the data that will be passed down to the `useLoaderData`.
 
+```jsx
+// Before
+export async function loader(){
+  const weather = await getWeather()
+  return weather
+}
 
+// After
+import {defer} from 'react-router-dom'
+export async function loader(){
+  const weatherPromise = getWeather()
+  return defer({weather  : weatherPromise})
+
+  /* Shorthand
+  const weather = getWeather()
+  return defer({weather})
+  */
+}
+```
+
+### Await component
+- Use when deferring data in the loader.
+- Allows us to surround the code that we'll be waiting for when the component first renders and it will conditionally render only after the data completes loading.
+- It takes in a prop called `resolve` which receives the promise of the data we are trying to get; the promise is accessed using useLoaderData since the loader returns a promise when using defer. After the promise is successfully resolved, Await will call a render prop child function which receives the data.
+
+### Suspense Component
+- Native to react, react introduced a way for libraries to suspend rendering of the app until something has finished therefore we can treat our components as if they are synchronous.
+- We wrap our suspended component (the Await component) with a suspense component. It then receives a prop called callback which gives react a component to render while waiting for the component that is suspended to finish.
+
+- Sidenote: We can pass several data in the defer function within the object and have different await and different suspense boundaries depending on what data we want to display first or want to or not defer on. If there is data that is crucial for us to load even before we transition to a router we have flexibility since we can go to our loader function and turn it into an async function and any data we  delay transition to the nre route for, we can add await in front of the promise meaning that route transition won't start until the awaited function has completed but if the function without await takes longer than the awaited one it will transiton as sson as the awaited one is ready and we will get the suspense boundary while the unawaited function is still resolving
+
+```jsx
+  export async function vansLoader(){
+      return defer({ vans : getVans(), user: await getUser() })
+  }
+```
