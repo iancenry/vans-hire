@@ -1,6 +1,7 @@
 import { useSearchParams, useLoaderData, defer, Await } from 'react-router-dom'
 import { getVans } from '../../api'
 import Van from './Van'
+import { Suspense } from 'react'
 
 export function vansLoader(){
     return defer({ vans : getVans() })
@@ -36,10 +37,11 @@ const Vans = () => {
   return (
     <div>
         <h1 className='van-header'>Explore our van options</h1>
-        <Await resolve={vansLoaderPromise.vans}>
-            {renderVanElements}
-        </Await>
-               
+        <Suspense fallback={<img src={`/src/assets/images/clouds-spinner.gif`} alt="van image" width='100%'  />}>
+            <Await resolve={vansLoaderPromise.vans}>
+                {renderVanElements}
+            </Await>
+        </Suspense>               
     </div>
   )
 }
