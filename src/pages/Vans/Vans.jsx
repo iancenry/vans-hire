@@ -37,7 +37,7 @@ const Vans = () => {
   return (
     <div>
         <h1 className='van-header'>Explore our van options</h1>
-        <Suspense fallback={<img src={`/src/assets/images/clouds-spinner.gif`} alt="van image" width='100%'  />}>
+        <Suspense fallback={ <div className='loader'><img src={`/src/assets/images/clouds-spinner.gif`} alt="loader" /></div> }>
             <Await resolve={vansLoaderPromise.vans}>
                 {renderVanElements}
             </Await>
