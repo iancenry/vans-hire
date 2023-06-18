@@ -15,7 +15,7 @@ const Dashboard = () => {
     function renderVanElements(vans) {
         const hostVansEls = vans.map((van) => (
             <div className="host-van-single" key={van.id}>
-                <img src={`/src/assets/images/${van.imageUrl}`} alt={`Photo of ${van.name}`} />
+                <img src={van.imageUrl} alt={`Photo of ${van.name}`} />
                 <div className="host-van-info">
                     <h3>{van.name}</h3>
                     <p>${van.price}/day</p>
@@ -54,7 +54,7 @@ const Dashboard = () => {
                     <h2>Your listed vans</h2>
                     <Link to="vans">View all</Link>
                 </div>
-                <Suspense fallback={<h3>Loading...</h3>}>
+                <Suspense fallback={ <div className='loader'><img src={`/src/assets/images/clouds-spinner.gif`} alt="loader" /></div>}>
                     <Await resolve={loaderData.vans}>{renderVanElements}</Await>
                 </Suspense>
             </section>
