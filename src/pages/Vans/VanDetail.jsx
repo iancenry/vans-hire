@@ -19,7 +19,7 @@ const VanDetail = () => {
     return (
         <div className="van-detail">
             <Link to={`..${search}`} className="back-button" relative="path">&larr; <span>Back to {backText} vans</span></Link>                  
-            <img src={`/src/assets/images/${van.imageUrl}`} />
+            <img src={van.imageUrl} />
             <i className={`van-button van-button-${van?.type}`}>{van.type}</i>   
             <h2>{van.name}</h2>
             <p className="van-price"><span>${van.price}</span>/day</p>
