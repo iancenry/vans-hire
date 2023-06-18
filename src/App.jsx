@@ -1,5 +1,5 @@
 import './App.css'
-import './server'
+// import './server'
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom'
 import { Home, About, Vans, vansLoader, VanDetail, vanDetailLoader, Dashboard,dashboardLoader , Income, Reviews, HostVans, hostVansLoader, HostVanDetail, hostVanDetailLoader,
    HostVanInfo, HostVanPhotos, HostVanPricing, NotFound, Login, loginLoader, action as loginAction } from './pages' 
