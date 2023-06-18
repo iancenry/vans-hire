@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {getFirestore, collection, getDocs, doc, getDoc} from "firebase/firestore/lite"
+import {getFirestore, collection, getDocs, doc, getDoc, query, where} from "firebase/firestore/lite"
 
 const firebaseConfig = {
   apiKey: "AIzaSyAIzxtK5umZtDRADhsGVz-E9yBa8r8mkkA",
@@ -34,21 +34,15 @@ export async function getVan(id){
     }
 }
 
+export async function getHostVans(){
+    const q = query(vanCollectionRef, where("hostId", "==", "123"))
+    const querySnapshot = await getDocs(q)
+    const dataArr = querySnapshot.docs.map(doc => ({
+        ...doc.data(), 
+        id: doc.id
+    }) )
 
-export async function getHostVans(id){
-    const url = id ? `/api/host/vans/${id}` : "/api/host/vans"
-    const res = await fetch(url)
-    if(!res.ok) {
-        const errorObject = {
-            message: "Failed to fetch vans",
-            statusText: res.statusText,
-            status: res.status
-        }
-        
-        throw errorObject
-    }
-    const data = await res.json()
-    return data.vans
+    return dataArr
 }
 
 export async function loginUser(creds) {
