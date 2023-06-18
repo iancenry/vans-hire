@@ -790,4 +790,6 @@ export async function loader(){
   }
 ```
 
-9:13:56
+- TODO: 
+ - Add real authentication
+ - Check out remix framework
