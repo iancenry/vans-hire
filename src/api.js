@@ -35,6 +35,7 @@ export async function getVan(id){
 }
 
 export async function getHostVans(){
+    //123 shouldn't be hardcoded + security rules in firestore
     const q = query(vanCollectionRef, where("hostId", "==", "123"))
     const querySnapshot = await getDocs(q)
     const dataArr = querySnapshot.docs.map(doc => ({
