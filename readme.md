@@ -792,4 +792,4 @@ export async function loader(){
 
 - TODO: 
  - Add real authentication
- - Check out remix framework
+ - Check out remix framework for fullstack webdev
