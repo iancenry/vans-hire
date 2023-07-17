@@ -1,4 +1,4 @@
-# React Router V6
+![request waterfall](https://github.com/iancenry/vans-hire/assets/77986239/49a325ff-ede6-4cd0-9d7f-43ad42fed351)# React Router V6
 
 - Helps in doing client side routing.
 
@@ -92,8 +92,10 @@ When talking about nested routes we are talking about:
 
 - Nested routes means nesting pieces of the url - `/van/van-id-or-name`
 - Prescence of a shared UI or parts of the page that need to remain on the page when we transition from one route to a child route or nested route. The shared UI can be a navigation bar.
+- 
+![nestedUI](https://github.com/iancenry/vans-hire/assets/77986239/32d030bb-bdd4-49d8-98f4-7525c984ff68)
 
-  - Add nested UI image
+  
 
 - To nest a route we need to change it from a self closing component to it having an opening and closing tag.
 - Use nested routes when you want to keep displaying same UI on the page, but also want to display more. A page changing a small or large portion.
@@ -549,9 +551,15 @@ function App() {
   2. What component can we use to automatically send someone to a different route in our app? <Navigate to="/login" />
   3. What component can we render if the user IS logged in? <Outlet />
   - In react router, when you have nested routes that are all displaying on the page at the same time, you can end up wih a `request waterfall` where everything has to wait for the previous route to finish before the next one to start.
-  - add request waterfall image
+ 
+
+![request waterfall](https://github.com/iancenry/vans-hire/assets/77986239/3c3063e8-71a5-4643-a4e1-6fdb5230f1ee)
+
+  
 - While using loaders for fetching, the fetching happens before the route transition & the target component actually renders to the page. An advantage of having requests available to the router before the routes even load is that they know how to run your fetch request before even transitioning to that route. So if you have some nested route you're trying to reach, all of those fetch request can happen simultaneously; all of the loaders that are required for your current route to display correctly are run in parallel then whenever the final one of the loader finishes the entire completed page can render to the screen thus leading to faster loading and better UX.
-- add parallel loaders image
+![parallel loaders](https://github.com/iancenry/vans-hire/assets/77986239/95084917-bbd7-42a2-83c7-916e793480a5)
+
+
 - Because all of the loaders for all routes will run as soon as we start the transition to that route it means that we cant put a layout route to wrap our routes and stop the fetch request from running. Because they all start running even before it transitions into that component we no longer can try to prevent the components from rendering because the fetch requests are happening before the component is rendering anyway.
 - Therefore the approach will be: Use of the `redirect()` function. If user isn't logged in, run redirect() to redirect to Login Page when protected route loaders run, before any route rendering happens. The downside is that it needs to happen in every protected route's loader.
 
